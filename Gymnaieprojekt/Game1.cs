@@ -12,6 +12,8 @@ namespace Gymnaieprojekt
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Sprite test;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -39,7 +41,7 @@ namespace Gymnaieprojekt
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            test = new Sprite(Content.Load<Texture2D>("Pixel"), new Vector2(100, 100), new Vector2(30, 30), null, null);
             // TODO: use this.Content to load your game content here
         }
 
@@ -74,9 +76,11 @@ namespace Gymnaieprojekt
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
 
-            // TODO: Add your drawing code here
+            test.Draw(spriteBatch);
 
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
