@@ -8,7 +8,7 @@ namespace Gymnaieprojekt.GameState
         private IGameState _currentGameState;
         private IGameState _previousGameState;
 
-        private bool _isPause;
+        private bool _isPaused;
 
         public GameStateManager(IGameState startState)
         {
@@ -21,23 +21,34 @@ namespace Gymnaieprojekt.GameState
             _currentGameState = changeToState;
         }
 
+        public void RevertState()
+        {
+            var temp = _currentGameState;
+            _currentGameState = _previousGameState;
+            _previousGameState = temp;
+        }
+
         public void Pause()
         {
-            _isPause = true;
+            _isPaused = true;
         }
 
         public void Resume()
         {
-            _isPause = false;
+            _isPaused = false;
         }
 
         public void Update(GameTime gameTime, GameStateManager stateManager)
         {
+            if (_isPaused) return;
+
             _currentGameState.Update(gameTime, stateManager);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            if (_isPaused) return;
+
             _currentGameState.Draw(gameTime, spriteBatch);
         }
     }

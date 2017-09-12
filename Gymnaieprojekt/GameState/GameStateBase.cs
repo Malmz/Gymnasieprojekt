@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Gymnaieprojekt.GameState
 {
-    public abstract class GameStateBase : IGameState
+    public abstract class GameStateBase: IGameState
     {
         protected GameStateBase(ContentManager contentManager)
         {
