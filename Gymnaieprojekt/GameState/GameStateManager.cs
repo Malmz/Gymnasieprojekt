@@ -1,31 +1,33 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+// ReSharper disable InconsistentNaming
 
 namespace Gymnaieprojekt.GameState
 {
     public class GameStateManager
     {
-        private IGameState _currentGameState;
-        private IGameState _previousGameState;
+        private IGameState currentGameState;
+        private IGameState previousGameState;
 
         private bool _isPaused;
 
         public GameStateManager(IGameState startState)
         {
-            _currentGameState = startState;
+            currentGameState = startState;
         }
 
         public void ChangeState(IGameState changeToState)
         {
-            _previousGameState = _currentGameState;
-            _currentGameState = changeToState;
+            previousGameState = currentGameState;
+            currentGameState = changeToState;
         }
 
         public void RevertState()
         {
-            var temp = _currentGameState;
-            _currentGameState = _previousGameState;
-            _previousGameState = temp;
+            if (previousGameState == null) return;
+            var temp = currentGameState;
+            currentGameState = previousGameState;
+            previousGameState = temp;
         }
 
         public void Pause()
@@ -42,14 +44,14 @@ namespace Gymnaieprojekt.GameState
         {
             if (_isPaused) return;
 
-            _currentGameState.Update(gameTime, stateManager);
+            currentGameState.Update(gameTime, stateManager);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (_isPaused) return;
 
-            _currentGameState.Draw(gameTime, spriteBatch);
+            currentGameState.Draw(gameTime, spriteBatch);
         }
     }
 }

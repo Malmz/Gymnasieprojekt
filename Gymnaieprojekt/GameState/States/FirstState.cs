@@ -7,6 +7,9 @@ namespace Gymnaieprojekt.GameState.States
 {
     public class FirstState : GameStateBase, IGameState
     {
+        private KeyboardState keyboard;
+        private Sprite test;
+
         public FirstState(ContentManager cMan) : base(cMan)
         {
             test = new Sprite(Content.Load<Texture2D>("Pixel"), new Vector2(100, 100), new Vector2(30, 30));
@@ -27,8 +30,5 @@ namespace Gymnaieprojekt.GameState.States
         {
             test.Draw(spriteBatch);
         }
-
-        private KeyboardState keyboard;
-        private Sprite test;
     }
 }

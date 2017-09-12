@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+// ReSharper disable InconsistentNaming
 
 namespace Gymnaieprojekt
 {
@@ -12,9 +13,9 @@ namespace Gymnaieprojekt
     /// </summary>
     public class Game1 : Game
     {
-        public GraphicsDeviceManager graphics;
-        public SpriteBatch spriteBatch;
-        public GameStateManager StateManager;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private GameStateManager stateManager;
 
         public Game1()
         {
@@ -30,7 +31,7 @@ namespace Gymnaieprojekt
         /// </summary>
         protected override void Initialize()
         {
-            StateManager = new GameStateManager(new FirstState(Content));
+            stateManager = new GameStateManager(new FirstState(Content));
 
             base.Initialize();
         }
@@ -65,7 +66,7 @@ namespace Gymnaieprojekt
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            StateManager.Update(gameTime, StateManager);
+            stateManager.Update(gameTime, stateManager);
 
             base.Update(gameTime);
         }
@@ -79,7 +80,7 @@ namespace Gymnaieprojekt
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
 
-            StateManager.Draw(gameTime, spriteBatch);
+            stateManager.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);
