@@ -11,7 +11,7 @@ namespace Gymnaieprojekt
         private Rectangle srcRect;
         private Color color;
 
-        public Sprite(Texture2D texture, Vector2 position, Vector2 size, Color? color, Rectangle? srcRect)
+        public Sprite(Texture2D texture, Vector2 position, Vector2 size, Color? color = null, Rectangle? srcRect = null)
         {
             this.texture = texture;
             this.position = position;
@@ -33,6 +33,12 @@ namespace Gymnaieprojekt
                 this.color = Color.White;
             }
             
+        }
+
+        public void Move(float x, float y)
+        {
+            position.X += x;
+            position.Y += y;
         }
 
         public void Draw(SpriteBatch spriteBatch)

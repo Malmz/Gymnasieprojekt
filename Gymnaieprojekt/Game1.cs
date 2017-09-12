@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Gymnaieprojekt.GameState;
+using Gymnaieprojekt.GameState.States;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,10 +12,9 @@ namespace Gymnaieprojekt
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-
-        Sprite test;
+        public GraphicsDeviceManager graphics;
+        public SpriteBatch spriteBatch;
+        public GameStateManager StateManager;
 
         public Game1()
         {
@@ -28,7 +30,7 @@ namespace Gymnaieprojekt
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            StateManager = new GameStateManager(new FirstState(Content));
 
             base.Initialize();
         }
@@ -41,8 +43,7 @@ namespace Gymnaieprojekt
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            test = new Sprite(Content.Load<Texture2D>("Pixel"), new Vector2(100, 100), new Vector2(30, 30), null, null);
-            // TODO: use this.Content to load your game content here
+
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace Gymnaieprojekt
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            StateManager.Update(gameTime, StateManager);
 
             base.Update(gameTime);
         }
@@ -78,7 +79,7 @@ namespace Gymnaieprojekt
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
 
-            test.Draw(spriteBatch);
+            StateManager.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);
