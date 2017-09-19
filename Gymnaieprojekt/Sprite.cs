@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Gymnaieprojekt
 {
-    class Sprite
+    public class Sprite
     {
         private Texture2D texture;
         private Vector2 position;
