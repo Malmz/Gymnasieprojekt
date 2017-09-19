@@ -44,6 +44,8 @@ namespace Gymnaieprojekt.GameState
         {
             if (_isPaused) return;
 
+            InputManager.Update(gameTime);
+
             currentGameState.Update(gameTime, stateManager);
         }
 
