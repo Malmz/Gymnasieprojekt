@@ -22,6 +22,7 @@ namespace Gymnaieprojekt.Sprites
         {
             try
             {
+                if (name == "") throw new Exception();
                 animations.Add(name, anim);
             }
             catch (Exception e)
@@ -33,14 +34,21 @@ namespace Gymnaieprojekt.Sprites
         public void Update(GameTime gameTime)
         {
             animations[currentAnimation].Update(gameTime);
+            if (animations[currentAnimation].Done && animations[currentAnimation].ToPlayWhenDone != "")
+            {
+                currentAnimation = animations[currentAnimation].ToPlayWhenDone;
+            }
+                
         }
 
-        public void ChangeAnimation(string name)
+        public void ChangeAnimation(string name, string animToPlayWhenDone = "")
         {
             currentAnimation = name;
+            if (animToPlayWhenDone == "") return;
+            animations[currentAnimation].ToPlayWhenDone = animToPlayWhenDone;
         }
 
-        private void Draw(SpriteBatch spriteBatch)
+        public new void Draw(SpriteBatch spriteBatch)
         {
             var texture = animations[currentAnimation].GetTexture();
 

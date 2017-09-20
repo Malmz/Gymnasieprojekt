@@ -36,6 +36,7 @@ namespace Gymnaieprojekt
 
         protected Sprite(Vector2 position, Rectangle srcRect, Color? color = null)
         {
+            scale = new Vector2(1 , 1);
             this.position = position;
             this.srcRect = srcRect;
             if (color != null)
