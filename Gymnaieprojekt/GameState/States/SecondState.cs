@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -7,10 +8,9 @@ namespace Gymnaieprojekt.GameState.States
 {
     public class SecondState : GameStateBase, IGameState
     {
-        private KeyboardState keyboard;
         private Sprite test2;
 
-        public SecondState(ContentManager cMan) :base(cMan) 
+        public SecondState(Tuple<GraphicsDeviceManager, ContentManager> mTuple) :base(mTuple) 
         {
             test2 = new Sprite(Content.Load<Texture2D>("Asteroid"), new Vector2(200, 200), new Vector2(48, 48));
         }
@@ -19,10 +19,9 @@ namespace Gymnaieprojekt.GameState.States
         {
             test2.Move(0, 2);
 
-            keyboard = Keyboard.GetState();
-            if (keyboard.IsKeyDown(Keys.G))
+            if (InputManager.IsKeyPressed(Keys.G))
             {
-                stateManager.ChangeState(new FirstState(Content));
+                stateManager.ChangeState(new FirstState(mTuple));
             }
         }
 
