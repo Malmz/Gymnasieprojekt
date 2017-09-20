@@ -6,10 +6,10 @@ namespace Gymnaieprojekt
     public class Sprite
     {
         private Texture2D texture;
-        private Vector2 position;
-        private Vector2 scale;
-        private Rectangle srcRect;
-        private Color color;
+        protected Vector2 position;
+        protected Vector2 scale;
+        protected Rectangle srcRect;
+        protected Color color;
 
         public Sprite(Texture2D texture, Vector2 position, Vector2 size, Color? color = null, Rectangle? srcRect = null)
         {
@@ -32,7 +32,20 @@ namespace Gymnaieprojekt
             {
                 this.color = Color.White;
             }
-            
+        }
+
+        protected Sprite(Vector2 position, Rectangle srcRect, Color? color = null)
+        {
+            this.position = position;
+            this.srcRect = srcRect;
+            if (color != null)
+            {
+                this.color = (Color)color;
+            }
+            else
+            {
+                this.color = Color.White;
+            }
         }
 
         public void Move(float x, float y)
