@@ -24,7 +24,7 @@ namespace Gymnaieprojekt.GameState.States
                 list.Add(Content.Load<Texture2D>("asteroid" + i));
             }
 
-            test = new AnimatedSprite(new Dictionary<string, Animation>(), Rectangle.Empty, new Vector2(100, 100), new Vector2(100, 100));
+            test = new AnimatedSprite(new Dictionary<string, Animation>(), new Rectangle(0,0,100,100), new Vector2(100, 100), new Vector2(100, 100));
 
             var animation = new Animation(list);
             animation.Looping = true;
@@ -37,8 +37,6 @@ namespace Gymnaieprojekt.GameState.States
 
         public new void Update(GameTime gameTime, GameStateManager stateManager)
         {
-            test.Move(2, 0);
-
             keyboard = Keyboard.GetState();
             if (keyboard.IsKeyDown(Keys.G))
             {

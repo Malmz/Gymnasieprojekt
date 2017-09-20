@@ -50,16 +50,16 @@ namespace Gymnaieprojekt.Sprites
 
         public new void Draw(SpriteBatch spriteBatch)
         {
-            var texture = animations[currentAnimation].GetTexture();
+            var frame = animations[currentAnimation].GetFrame();
 
             spriteBatch.Draw(
-                texture: texture,
+                texture: frame.Texture,
                 position: position,
                 scale: scale,
-                sourceRectangle: srcRect,
+                sourceRectangle: null,
                 color: Color.White,
                 rotation: 0,
-                origin: Vector2.Zero,
+                origin: frame.Origin,
                 effects: SpriteEffects.None,
                 layerDepth: 0
             );
