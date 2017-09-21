@@ -19,9 +19,9 @@ namespace Gymnaieprojekt.GameState.States
             var testFrames = new List<Frame>();
 
             var list = new List<Texture2D>();
-            for (int i = 1; i <= 8; i++)
+            for (int i = 0; i < 3; i++)
             {
-                list.Add(Content.Load<Texture2D>("asteroid" + i));
+                list.Add(Content.Load<Texture2D>("ship0Texture" + i));
             }
 
             test = new AnimatedSprite(new Dictionary<string, Animation>(), new Rectangle(0,0,100,100), new Vector2(100, 100), new Vector2(100, 100));

@@ -24,12 +24,12 @@ namespace Gymnaieprojekt.Sprites
         }
 
         public Animation(Texture2D spriteSheet, GraphicsDeviceManager graphics, int horizontalCount, int verticalCount, bool looping, bool[][] skipThese = null)
-        {
+        { 
             List<Texture2D> textures = new List<Texture2D>();
 
             var width = spriteSheet.Width / horizontalCount;
             var height = spriteSheet.Height / verticalCount;
-
+                
             for (int i = 0; i < horizontalCount; i++)
             {
                 for (int j = 0; j < verticalCount; j++)
