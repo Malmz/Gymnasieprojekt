@@ -1,4 +1,5 @@
-﻿using Gymnaieprojekt.GameState;
+﻿using System;
+using Gymnaieprojekt.GameState;
 using Gymnaieprojekt.GameState.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -16,6 +17,7 @@ namespace Gymnaieprojekt
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private GameStateManager stateManager;
+        private Tuple<GraphicsDeviceManager, ContentManager> managerTuple;
 
         public Game1()
         {
@@ -31,7 +33,8 @@ namespace Gymnaieprojekt
         /// </summary>
         protected override void Initialize()
         {
-            stateManager = new GameStateManager(new FirstState(Content));
+            managerTuple = new Tuple<GraphicsDeviceManager, ContentManager>(graphics, Content);
+            stateManager = new GameStateManager(new FirstState(managerTuple));
 
             base.Initialize();
         }

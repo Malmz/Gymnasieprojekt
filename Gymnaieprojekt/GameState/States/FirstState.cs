@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Gymnaieprojekt.Sprites;
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,11 +10,8 @@ namespace Gymnaieprojekt.GameState.States
 {
     public class FirstState : GameStateBase, IGameState
     {
-        private KeyboardState keyboard;
         private AnimatedSprite test;
-
-
-        public FirstState(ContentManager cMan) : base(cMan)
+        public FirstState(Tuple<GraphicsDeviceManager, ContentManager> mTuple) : base(mTuple)
         {
 
             var testFrames = new List<Frame>();
@@ -37,12 +35,12 @@ namespace Gymnaieprojekt.GameState.States
 
         public new void Update(GameTime gameTime, GameStateManager stateManager)
         {
-            keyboard = Keyboard.GetState();
-            if (keyboard.IsKeyDown(Keys.G))
+            if (InputManager.IsKeyPressed(Keys.G))
             {
-                stateManager.ChangeState(new SecondState(Content));
+                stateManager.ChangeState(new SecondState(mTuple));
             }
-            test.Update(gameTime);
+            if(InputManager.IsKeyPressed(Keys.Space))
+                test.Move(-50, 0);
         }
 
         public new void Draw(GameTime gameTime, SpriteBatch spriteBatch)
