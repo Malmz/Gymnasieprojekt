@@ -41,6 +41,7 @@ namespace Gymnaieprojekt.GameState.States
             }
             if(InputManager.IsKeyPressed(Keys.Space))
                 test.Move(-50, 0);
+            test.Update(gameTime);
         }
 
         public new void Draw(GameTime gameTime, SpriteBatch spriteBatch)
