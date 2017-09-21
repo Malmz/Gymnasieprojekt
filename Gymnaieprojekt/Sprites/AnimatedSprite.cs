@@ -10,12 +10,12 @@ namespace Gymnaieprojekt.Sprites
 {
     public class AnimatedSprite : Sprite
     {
-        private Dictionary<string, Animation> animations { get; set; }
+        private Dictionary<string, Animation> animations { get; }
         private string currentAnimation = "";
 
-        public AnimatedSprite(Dictionary<string, Animation> animations, Rectangle srcRect, Vector2 position, Vector2 size, float rotation = 0, Vector2? origin = null,  Color? color = null) : base(position, srcRect, color, rotation, origin)
+        public AnimatedSprite(Rectangle srcRect, Vector2 position, Vector2 size, float rotation = 0, Vector2? origin = null,  Color? color = null) : base(position, srcRect, color, rotation, origin)
         {
-            this.animations = animations;
+            animations = new Dictionary<string, Animation>();
         }
 
         public void AddAnimation(Animation anim, string name)

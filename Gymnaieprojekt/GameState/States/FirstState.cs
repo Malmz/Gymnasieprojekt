@@ -17,21 +17,9 @@ namespace Gymnaieprojekt.GameState.States
         {
             dot =  new Sprite(Content.Load<Texture2D>("Pixel"), new Vector2(100, 100), new Vector2(1,1));
 
-            var testFrames = new List<Frame>();
+            test = new AnimatedSprite(new Rectangle(0,0,100,100), new Vector2(100, 100), new Vector2(100, 100));
 
-            //var list = new List<Texture2D>();
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    list.Add(Content.Load<Texture2D>("ship0Texture" + i));
-            //}
-
-            test = new AnimatedSprite(new Dictionary<string, Animation>(), new Rectangle(0,0,100,100), new Vector2(100, 100), new Vector2(100, 100));
-
-            //var animation = new Animation(list);
-            var animation = new Animation(Content.Load<Texture2D>("ship0TextureSheet"), GraphicsDevice, 3, 1, true);
-            animation.Looping = true;
-            test.AddAnimation(animation, "default");
-
+            test.AddAnimation(new Animation(Content.Load<Texture2D>("ship0TextureSheet"), GraphicsDevice, 3, 1, true), "default");
             test.ChangeAnimation("default");
 
             test.Center();

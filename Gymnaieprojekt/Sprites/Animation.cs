@@ -58,8 +58,10 @@ namespace Gymnaieprojekt.Sprites
             frames = tempFrames;
         }
 
-        public Animation(List<Texture2D> frames)
+        public Animation(List<Texture2D> frames, bool looping)
         {
+            Looping = looping;
+
             var tempFrames = new List<Frame>();
 
             foreach (var frame in frames)
