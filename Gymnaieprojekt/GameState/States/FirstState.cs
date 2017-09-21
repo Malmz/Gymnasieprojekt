@@ -1,4 +1,6 @@
-﻿using System;
+using System.Collections.Generic;
+using Gymnaieprojekt.Sprites;
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,17 +10,31 @@ namespace Gymnaieprojekt.GameState.States
 {
     public class FirstState : GameStateBase, IGameState
     {
-        private Sprite test;
-
+        private AnimatedSprite test;
         public FirstState(Tuple<GraphicsDeviceManager, ContentManager> mTuple) : base(mTuple)
         {
-            test = new Sprite(Content.Load<Texture2D>("Pixel"), new Vector2(100, 100), new Vector2(30, 30));
+
+            var testFrames = new List<Frame>();
+
+            var list = new List<Texture2D>();
+            for (int i = 0; i < 3; i++)
+            {
+                list.Add(Content.Load<Texture2D>("ship0Texture" + i));
+            }
+
+            test = new AnimatedSprite(new Dictionary<string, Animation>(), new Rectangle(0,0,100,100), new Vector2(100, 100), new Vector2(100, 100));
+
+            var animation = new Animation(list);
+            animation.Looping = true;
+            test.AddAnimation(animation, "default");
+
+
+
+            test.ChangeAnimation("default");
         }
 
         public new void Update(GameTime gameTime, GameStateManager stateManager)
         {
-            test.Move(2, 0);
-
             if (InputManager.IsKeyPressed(Keys.G))
             {
                 stateManager.ChangeState(new SecondState(mTuple));
