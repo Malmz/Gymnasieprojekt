@@ -23,16 +23,39 @@ namespace Gymnaieprojekt.Sprites
             Looping = looping;
         }
 
-        public Animation(Texture2D spriteSheet, int horizontalCount, int verticalCount, bool looping, int[][] skipThese = null)
+        public Animation(Texture2D spriteSheet, GraphicsDeviceManager graphics, int horizontalCount, int verticalCount, bool looping, bool[][] skipThese = null)
         {
-            //todo
-            //Texture2D originalTexture = Content.Load<Texture2D>("myTexture");
-            //Rectangle sourceRectangle = new Rectangle(10, 10, originalTexture.Width - 20, originalTexture.Height - 20);
+            List<Texture2D> textures = new List<Texture2D>();
 
-            //Texture2D cropTexture = new Texture2D(GraphicsDevice, sourceRectangle.Width, sourceRectangle.Height);
-            //Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
-            //originalTexture.GetData(0, sourceRectangle, data, 0, data.Length);
-            //cropTexture.SetData(data);
+            var width = spriteSheet.Width / horizontalCount;
+            var height = spriteSheet.Height / verticalCount;
+
+            for (int i = 0; i < horizontalCount; i++)
+            {
+                for (int j = 0; j < verticalCount; j++)
+                {
+                    if (skipThese?[i][j] == true) continue;
+
+                    Rectangle sourceRectangle = new Rectangle(i * width, j * height, width, height);
+                    var cropTexture = new Texture2D(graphics.GraphicsDevice, sourceRectangle.Width,
+                        sourceRectangle.Height);
+
+                    Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
+
+                    spriteSheet.GetData(0, sourceRectangle, data, 0, data.Length);
+                    cropTexture.SetData(data);
+
+                    textures.Add(cropTexture);
+                }
+            }
+
+            var tempFrames = new List<Frame>();
+
+            foreach (var texture in textures)
+            {
+                tempFrames.Add(new Frame(texture));
+            }
+            frames = tempFrames;
         }
 
         public Animation(List<Texture2D> frames)
