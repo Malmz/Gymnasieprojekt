@@ -10,6 +10,8 @@ namespace Gymnaieprojekt
         protected Vector2 scale;
         protected Rectangle srcRect;
         protected Color color;
+        protected float rotation;
+        protected Vector2 origin;
 
         public Sprite(Texture2D texture, Vector2 position, Vector2 size, Color? color = null, Rectangle? srcRect = null)
         {
@@ -34,7 +36,7 @@ namespace Gymnaieprojekt
             }
         }
 
-        protected Sprite(Vector2 position, Rectangle srcRect, Color? color = null)
+        protected Sprite(Vector2 position, Rectangle srcRect, Color? color = null, float rotation = 0, Vector2? origin = null)
         {
             scale = new Vector2(1 , 1);
             this.position = position;
@@ -47,12 +49,27 @@ namespace Gymnaieprojekt
             {
                 this.color = Color.White;
             }
+            this.rotation = rotation;
+            this.origin = origin ?? Vector2.Zero;
         }
 
         public void Move(float x, float y)
         {
             position.X += x;
             position.Y += y;
+        }
+
+        public void SetPosition(float x, float y) { SetPosition(new Vector2(x, y)); }
+        public void SetPosition(Vector2 pos) { position = pos; }
+
+        public void Rotate(float rot)
+        {
+            rotation += rot;
+        }
+
+        public void Center()
+        {
+            origin = new Vector2(texture.Width / 2f, texture.Height / 2f);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -63,8 +80,8 @@ namespace Gymnaieprojekt
                 scale: scale,
                 sourceRectangle: srcRect,
                 color: Color.White,
-                rotation: 0,
-                origin: Vector2.Zero,
+                rotation: rotation,
+                origin: origin,
                 effects: SpriteEffects.None,
                 layerDepth: 0
             );

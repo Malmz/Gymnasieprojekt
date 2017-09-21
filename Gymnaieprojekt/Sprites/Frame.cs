@@ -11,7 +11,7 @@ namespace Gymnaieprojekt.Sprites
         public Frame(Texture2D texture)
         {
             Texture = texture;
-            Origin = new Vector2(Texture.Width / 2f, Texture.Height / 2f);
+            Origin = Vector2.Zero;
         }
     }
 }

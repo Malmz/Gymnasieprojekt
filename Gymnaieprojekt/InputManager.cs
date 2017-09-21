@@ -44,7 +44,7 @@ namespace Gymnaieprojekt
             return keyState.IsKeyDown(key) && priorKeyState.IsKeyUp(key);
         }
 
-        public static bool IsKeydown(Keys key)
+        public static bool IsKeyDown(Keys key)
         {
             return keyState.IsKeyDown(key);
         }
