@@ -13,7 +13,7 @@ namespace Gymnaieprojekt.Sprites
         private Dictionary<string, Animation> animations { get; set; }
         private string currentAnimation = "";
 
-        public AnimatedSprite(Dictionary<string, Animation> animations, Rectangle srcRect, Vector2 position, Vector2 size, Color? color = null) : base(position, srcRect, color)
+        public AnimatedSprite(Dictionary<string, Animation> animations, Rectangle srcRect, Vector2 position, Vector2 size, float rotation = 0, Vector2? origin = null,  Color? color = null) : base(position, srcRect, color, rotation, origin)
         {
             this.animations = animations;
         }
@@ -33,6 +33,7 @@ namespace Gymnaieprojekt.Sprites
 
         public void Update(GameTime gameTime)
         {
+            //if (string.IsNullOrEmpty(currentAnimation) || animations.Count <= 0) return;
             animations[currentAnimation].Update(gameTime);
             if (animations[currentAnimation].Done && animations[currentAnimation].ToPlayWhenDone != "")
             {
@@ -48,6 +49,13 @@ namespace Gymnaieprojekt.Sprites
             animations[currentAnimation].ToPlayWhenDone = animToPlayWhenDone;
         }
 
+        public new void Center()
+        {
+            var texture = animations[currentAnimation].GetFrame().Texture;
+
+            origin = new Vector2(texture.Width / 2f, texture.Height / 2f);
+        }
+
         public new void Draw(SpriteBatch spriteBatch)
         {
             var frame = animations[currentAnimation].GetFrame();
@@ -58,8 +66,8 @@ namespace Gymnaieprojekt.Sprites
                 scale: scale,
                 sourceRectangle: null,
                 color: Color.White,
-                rotation: 0,
-                origin: frame.Origin,
+                rotation: rotation,
+                origin: origin + frame.Origin,
                 effects: SpriteEffects.None,
                 layerDepth: 0
             );
