@@ -10,12 +10,12 @@ namespace Gymnaieprojekt.Sprites
 {
     public class AnimatedSprite : Sprite
     {
-        private Dictionary<string, Animation> animations { get; }
+        private Dictionary<string, Animation> Animations { get; }
         private string currentAnimation = "";
 
         public AnimatedSprite(Rectangle srcRect, Vector2 position, Vector2 size, float rotation = 0, Vector2? origin = null,  Color? color = null) : base(position, srcRect, color, rotation, origin)
         {
-            animations = new Dictionary<string, Animation>();
+            Animations = new Dictionary<string, Animation>();
         }
 
         public void AddAnimation(Animation anim, string name)
@@ -23,7 +23,7 @@ namespace Gymnaieprojekt.Sprites
             try
             {
                 if (name == "") throw new Exception();
-                animations.Add(name, anim);
+                Animations.Add(name, anim);
             }
             catch (Exception e)
             {
@@ -31,34 +31,34 @@ namespace Gymnaieprojekt.Sprites
             }
         }
 
-        public void Update(GameTime gameTime)
-        {
-            //if (string.IsNullOrEmpty(currentAnimation) || animations.Count <= 0) return;
-            animations[currentAnimation].Update(gameTime);
-            if (animations[currentAnimation].Done && animations[currentAnimation].ToPlayWhenDone != "")
-            {
-                currentAnimation = animations[currentAnimation].ToPlayWhenDone;
-            }
-                
-        }
-
         public void ChangeAnimation(string name, string animToPlayWhenDone = "")
         {
             currentAnimation = name;
             if (animToPlayWhenDone == "") return;
-            animations[currentAnimation].ToPlayWhenDone = animToPlayWhenDone;
+            Animations[currentAnimation].ToPlayWhenDone = animToPlayWhenDone;
         }
 
         public new void Center()
         {
-            var texture = animations[currentAnimation].GetFrame().Texture;
+            var texture = Animations[currentAnimation].GetFrame().Texture;
 
             origin = new Vector2(texture.Width / 2f, texture.Height / 2f);
         }
 
+        public void Update(GameTime gameTime)
+        {
+            //if (string.IsNullOrEmpty(currentAnimation) || animations.Count <= 0) return;
+            Animations[currentAnimation].Update(gameTime);
+            if (Animations[currentAnimation].Done && Animations[currentAnimation].ToPlayWhenDone != "")
+            {
+                currentAnimation = Animations[currentAnimation].ToPlayWhenDone;
+            }
+
+        }
+
         public new void Draw(SpriteBatch spriteBatch)
         {
-            var frame = animations[currentAnimation].GetFrame();
+            var frame = Animations[currentAnimation].GetFrame();
 
             spriteBatch.Draw(
                 texture: frame.Texture,

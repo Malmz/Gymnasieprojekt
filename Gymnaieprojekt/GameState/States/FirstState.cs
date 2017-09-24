@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Gymnaieprojekt.Sprites;
 using System;
 using Microsoft.Xna.Framework;
@@ -13,10 +12,9 @@ namespace Gymnaieprojekt.GameState.States
         private AnimatedSprite test;
         private Sprite dot;
 
-        public FirstState(Tuple<GraphicsDeviceManager, ContentManager> mTuple) : base(mTuple)
+        public FirstState(GraphicsDeviceManager device, ContentManager content) : base(device, content)
         {
             dot =  new Sprite(Content.Load<Texture2D>("Pixel"), new Vector2(100, 100), new Vector2(1,1));
-
             test = new AnimatedSprite(new Rectangle(0,0,100,100), new Vector2(100, 100), new Vector2(100, 100));
 
             test.AddAnimation(new Animation(Content.Load<Texture2D>("ship0TextureSheet"), GraphicsDevice, 3, 1, true), "default");
@@ -29,10 +27,13 @@ namespace Gymnaieprojekt.GameState.States
         {
             if (InputManager.IsKeyPressed(Keys.G))
             {
-                stateManager.ChangeState(new SecondState(mTuple));
+                stateManager.ChangeState(new SecondState(GraphicsDevice, Content));
             }
-            if(InputManager.IsKeyDown(Keys.Space))
-                test.Rotate((float)Math.PI / 72);
+            if (InputManager.IsKeyDown(Keys.Space))
+            {
+                test.Rotation += (float)Math.PI / 72;
+            }
+
             test.Update(gameTime);
         }
 

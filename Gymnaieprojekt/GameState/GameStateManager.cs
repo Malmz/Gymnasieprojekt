@@ -9,7 +9,7 @@ namespace Gymnaieprojekt.GameState
         private IGameState currentGameState;
         private IGameState previousGameState;
 
-        private bool _isPaused;
+        private bool isPaused;
 
         public GameStateManager(IGameState startState)
         {
@@ -32,17 +32,17 @@ namespace Gymnaieprojekt.GameState
 
         public void Pause()
         {
-            _isPaused = true;
+            isPaused = true;
         }
 
         public void Resume()
         {
-            _isPaused = false;
+            isPaused = false;
         }
 
         public void Update(GameTime gameTime, GameStateManager stateManager)
         {
-            if (_isPaused) return;
+            if (isPaused) return;
 
             InputManager.Update(gameTime);
 
@@ -51,7 +51,7 @@ namespace Gymnaieprojekt.GameState
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (_isPaused) return;
+            if (isPaused) return;
 
             currentGameState.Draw(gameTime, spriteBatch);
         }
