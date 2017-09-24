@@ -17,7 +17,7 @@ namespace Gymnaieprojekt.GameState.States
 
         public new void Update(GameTime gameTime, GameStateManager stateManager)
         {
-            test2.Move(0, 2);
+            test2.Y += 2;
 
             if (InputManager.IsKeyPressed(Keys.G))
             {

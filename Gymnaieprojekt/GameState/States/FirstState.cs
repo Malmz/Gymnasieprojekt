@@ -31,7 +31,7 @@ namespace Gymnaieprojekt.GameState.States
             }
             if (InputManager.IsKeyDown(Keys.Space))
             {
-                test.Rotate((float)Math.PI / 72);
+                test.Rotation += (float)Math.PI / 72;
             }
 
             test.Update(gameTime);
