@@ -10,7 +10,7 @@ namespace Gymnaieprojekt.GameState.States
     {
         private Sprite test2;
 
-        public SecondState(Tuple<GraphicsDeviceManager, ContentManager> mTuple) :base(mTuple) 
+        public SecondState(GraphicsDeviceManager device, ContentManager content) : base(device, content) 
         {
             test2 = new Sprite(Content.Load<Texture2D>("Asteroid"), new Vector2(200, 200), new Vector2(48, 48));
         }
@@ -21,7 +21,7 @@ namespace Gymnaieprojekt.GameState.States
 
             if (InputManager.IsKeyPressed(Keys.G))
             {
-                stateManager.ChangeState(new FirstState(mTuple));
+                stateManager.ChangeState(new FirstState(GraphicsDevice, Content));
             }
         }
 
