@@ -76,12 +76,6 @@ namespace Gymnaieprojekt
             set { color = value; }
         }
 
-        public void Move(float x, float y)
-        {
-            position.X += x;
-            position.Y += y;
-        }
-
         public void Center()
         {
             origin = texture.Bounds.Size.ToVector2() / 2;
