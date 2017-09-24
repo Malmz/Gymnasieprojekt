@@ -13,27 +13,14 @@ namespace Gymnaieprojekt
         protected float rotation;
         protected Vector2 origin;
 
-        public Sprite(Texture2D texture, Vector2 position, Vector2 size, Color? color = null, Rectangle? srcRect = null)
+        public Sprite(Texture2D texture, Vector2 position, Vector2 size, Color? color = null, Rectangle? srcRect = null, Vector2? origin = null )
         {
             this.texture = texture;
             this.position = position;
             scale = size/texture.Bounds.Size.ToVector2();
-            if (srcRect != null)
-            {
-                this.srcRect = (Rectangle)srcRect;
-            }
-            else
-            {
-                this.srcRect = texture.Bounds;
-            }
-            if (color != null)
-            {
-                this.color = (Color)color;
-            }
-            else
-            {
-                this.color = Color.White;
-            }
+            this.srcRect = srcRect ?? texture.Bounds;
+            this.color = color ?? Color.White;
+            this.origin = origin ?? Vector2.Zero;
         }
 
         protected Sprite(Vector2 position, Rectangle srcRect, Color? color = null, float rotation = 0, Vector2? origin = null)
@@ -41,16 +28,52 @@ namespace Gymnaieprojekt
             scale = new Vector2(1 , 1);
             this.position = position;
             this.srcRect = srcRect;
-            if (color != null)
-            {
-                this.color = (Color)color;
-            }
-            else
-            {
-                this.color = Color.White;
-            }
+            this.color = color ?? Color.White;
             this.rotation = rotation;
             this.origin = origin ?? Vector2.Zero;
+        }
+
+        Vector2 Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+        float X
+        {
+            get { return position.X; }
+            set { position.X = value; }
+        }
+        float Y
+        {
+            get { return position.Y; }
+            set { position.Y = value; }
+        }
+
+        Vector2 Size
+        {
+            get { return scale * texture.Bounds.Size.ToVector2(); }
+            set { scale = value / texture.Bounds.Size.ToVector2(); }
+        }
+        float Width
+        {
+            get { return scale.X * texture.Width; }
+            set { scale.X = value / texture.Width; }
+        }
+        float Height
+        {
+            get { return scale.Y * texture.Height; }
+            set { scale.Y = value / texture.Height; }
+        }
+
+        float Rotation
+        {
+            get { return rotation; }
+            set { rotation = value; }
+        }
+        Color Color
+        {
+            get { return color; }
+            set { color = value; }
         }
 
         public void Move(float x, float y)
@@ -59,17 +82,9 @@ namespace Gymnaieprojekt
             position.Y += y;
         }
 
-        public void SetPosition(float x, float y) { SetPosition(new Vector2(x, y)); }
-        public void SetPosition(Vector2 pos) { position = pos; }
-
-        public void Rotate(float rot)
-        {
-            rotation += rot;
-        }
-
         public void Center()
         {
-            origin = new Vector2(texture.Width / 2f, texture.Height / 2f);
+            origin = texture.Bounds.Size.ToVector2() / 2;
         }
 
         public void Draw(SpriteBatch spriteBatch)
