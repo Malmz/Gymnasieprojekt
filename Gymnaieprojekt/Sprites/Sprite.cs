@@ -33,44 +33,44 @@ namespace Gymnaieprojekt
             this.origin = origin ?? Vector2.Zero;
         }
 
-        Vector2 Position
+        public Vector2 Position
         {
             get { return position; }
             set { position = value; }
         }
-        float X
+        public float X
         {
             get { return position.X; }
             set { position.X = value; }
         }
-        float Y
+        public float Y
         {
             get { return position.Y; }
             set { position.Y = value; }
         }
 
-        Vector2 Size
+        public Vector2 Size
         {
             get { return scale * texture.Bounds.Size.ToVector2(); }
             set { scale = value / texture.Bounds.Size.ToVector2(); }
         }
-        float Width
+        public float Width
         {
             get { return scale.X * texture.Width; }
             set { scale.X = value / texture.Width; }
         }
-        float Height
+        public float Height
         {
             get { return scale.Y * texture.Height; }
             set { scale.Y = value / texture.Height; }
         }
 
-        float Rotation
+        public float Rotation
         {
             get { return rotation; }
             set { rotation = value; }
         }
-        Color Color
+        public Color Color
         {
             get { return color; }
             set { color = value; }
