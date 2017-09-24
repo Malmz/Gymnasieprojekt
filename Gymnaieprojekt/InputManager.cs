@@ -51,12 +51,12 @@ namespace Gymnaieprojekt
 
         public static bool IsScrollingDown()
         {
-            return mouseState.HorizontalScrollWheelValue < priorMouseState.HorizontalScrollWheelValue;
+            return mouseState.ScrollWheelValue < priorMouseState.ScrollWheelValue;
         }
 
         public static bool IsScrollingUp()
         {
-            return mouseState.HorizontalScrollWheelValue > priorMouseState.HorizontalScrollWheelValue;
+            return mouseState.ScrollWheelValue > priorMouseState.ScrollWheelValue;
         }
 
         public static bool IsMouseKeyClicked(MouseButtons key)

@@ -49,7 +49,7 @@ namespace Gymnaieprojekt.Sprites
         {
             //if (string.IsNullOrEmpty(currentAnimation) || animations.Count <= 0) return;
             Animations[currentAnimation].Update(gameTime);
-            if (Animations[currentAnimation].Done && Animations[currentAnimation].ToPlayWhenDone != "")
+            if (Animations[currentAnimation].Done && !string.IsNullOrEmpty(Animations[currentAnimation].ToPlayWhenDone))
             {
                 currentAnimation = Animations[currentAnimation].ToPlayWhenDone;
             }
