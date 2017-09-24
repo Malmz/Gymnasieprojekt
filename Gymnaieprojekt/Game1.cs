@@ -17,7 +17,6 @@ namespace Gymnaieprojekt
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private GameStateManager stateManager;
-        private Tuple<GraphicsDeviceManager, ContentManager> managerTuple;
 
         public Game1()
         {
@@ -33,8 +32,7 @@ namespace Gymnaieprojekt
         /// </summary>
         protected override void Initialize()
         {
-            managerTuple = new Tuple<GraphicsDeviceManager, ContentManager>(graphics, Content);
-            stateManager = new GameStateManager(new FirstState(managerTuple));
+            stateManager = new GameStateManager(new FirstState(graphics, Content));
 
             base.Initialize();
         }
