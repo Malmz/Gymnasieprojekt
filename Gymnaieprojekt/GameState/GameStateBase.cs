@@ -7,12 +7,14 @@ namespace Gymnaieprojekt.GameState
     public abstract class GameStateBase: IGameState
     {
         public ContentManager Content { get; }
-        public GraphicsDeviceManager GraphicsDevice { get; }
+        public GraphicsDeviceManager GraphicsDeviceManager { get; }
+        public GraphicsDevice GraphicsDevice { get; }
 
         protected GameStateBase(GraphicsDeviceManager device, ContentManager content)
         {
             Content = content;
-            GraphicsDevice = device;
+            GraphicsDeviceManager = device;
+            GraphicsDevice = device.GraphicsDevice;
         }
 
         public void Update(GameTime gameTime, GameStateManager stateManager) { }

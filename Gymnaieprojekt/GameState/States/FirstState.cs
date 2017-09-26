@@ -27,7 +27,7 @@ namespace Gymnaieprojekt.GameState.States
         {
             if (InputManager.IsKeyPressed(Keys.G))
             {
-                stateManager.ChangeState(new SecondState(GraphicsDevice, Content));
+                stateManager.ChangeState(new SecondState(GraphicsDeviceManager, Content));
             }
             if (InputManager.IsKeyDown(Keys.Space))
             {

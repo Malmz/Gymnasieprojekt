@@ -21,7 +21,7 @@ namespace Gymnaieprojekt.GameState.States
 
             if (InputManager.IsKeyPressed(Keys.G))
             {
-                stateManager.ChangeState(new FirstState(GraphicsDevice, Content));
+                stateManager.ChangeState(new FirstState(GraphicsDeviceManager, Content));
             }
         }
 

@@ -23,7 +23,7 @@ namespace Gymnaieprojekt.Sprites
             Looping = looping;
         }
 
-        public Animation(Texture2D spriteSheet, GraphicsDeviceManager graphics, int horizontalCount, int verticalCount, bool looping, bool[][] skipThese = null)
+        public Animation(Texture2D spriteSheet, GraphicsDevice graphics, int horizontalCount, int verticalCount, bool looping, bool[][] skipThese = null)
         { 
             List<Texture2D> textures = new List<Texture2D>();
 
@@ -37,7 +37,7 @@ namespace Gymnaieprojekt.Sprites
                     if (skipThese?[i][j] == true) continue;
 
                     Rectangle sourceRectangle = new Rectangle(i * width, j * height, width, height);
-                    var cropTexture = new Texture2D(graphics.GraphicsDevice, sourceRectangle.Width,
+                    var cropTexture = new Texture2D(graphics, sourceRectangle.Width,
                         sourceRectangle.Height);
 
                     Color[] data = new Color[sourceRectangle.Width * sourceRectangle.Height];
