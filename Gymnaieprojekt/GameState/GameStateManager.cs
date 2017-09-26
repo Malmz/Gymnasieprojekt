@@ -53,7 +53,7 @@ namespace Gymnaieprojekt.GameState
         {
             if (isPaused) return;
 
-            currentGameState.Draw(gameTime, spriteBatch);
+            currentGameState.ManageDraw(gameTime, spriteBatch);
         }
     }
 }

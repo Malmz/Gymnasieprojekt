@@ -23,7 +23,7 @@ namespace Gymnaieprojekt.GameState.States
             test.Center();
         }
 
-        public new void Update(GameTime gameTime, GameStateManager stateManager)
+        public override void Update(GameTime gameTime, GameStateManager stateManager)
         {
             if (InputManager.IsKeyPressed(Keys.G))
             {
@@ -37,7 +37,7 @@ namespace Gymnaieprojekt.GameState.States
             test.Update(gameTime);
         }
 
-        public new void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             test.Draw(spriteBatch);
             dot.Draw(spriteBatch);

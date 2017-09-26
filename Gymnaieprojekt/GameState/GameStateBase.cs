@@ -17,7 +17,18 @@ namespace Gymnaieprojekt.GameState
             GraphicsDevice = device.GraphicsDevice;
         }
 
-        public void Update(GameTime gameTime, GameStateManager stateManager) { }
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch) { }
+        public abstract void Update(GameTime gameTime, GameStateManager stateManager);
+
+        public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
+
+        public void ManageDraw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+
+            Draw(gameTime, spriteBatch);
+
+            spriteBatch.End();
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace Gymnaieprojekt.GameState.States
             test2 = new Sprite(Content.Load<Texture2D>("Asteroid"), new Vector2(200, 200), new Vector2(48, 48));
         }
 
-        public new void Update(GameTime gameTime, GameStateManager stateManager)
+        public override void Update(GameTime gameTime, GameStateManager stateManager)
         {
             test2.Y += 2;
 
@@ -25,7 +25,7 @@ namespace Gymnaieprojekt.GameState.States
             }
         }
 
-        public new void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             test2.Draw(spriteBatch);
         }
