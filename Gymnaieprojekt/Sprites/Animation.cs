@@ -23,8 +23,9 @@ namespace Gymnaieprojekt.Sprites
             Looping = looping;
         }
 
-        public Animation(Texture2D spriteSheet, GraphicsDevice graphics, int horizontalCount, int verticalCount, bool looping, bool[][] skipThese = null)
-        { 
+        public Animation(Texture2D spriteSheet, GraphicsDevice graphics, int horizontalCount, int verticalCount, int speed, bool looping, bool[][] skipThese = null)
+        {
+            AnimationSpeed = speed;
             List<Texture2D> textures = new List<Texture2D>();
 
             var width = spriteSheet.Width / horizontalCount;
