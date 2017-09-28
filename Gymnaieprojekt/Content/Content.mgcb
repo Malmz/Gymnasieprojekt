@@ -181,18 +181,6 @@
 /processorParam:TextureFormat=Color
 /build:ship0TextureSheet.png
 
-#begin spr_tree_animated_test.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:spr_tree_animated_test.png
-
 #begin spr_tree_animated.png
 /importer:TextureImporter
 /processor:TextureProcessor
