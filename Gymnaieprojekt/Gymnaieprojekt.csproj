@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Exceptions\AnimationAlreadyExistsException.cs" />
+    <Compile Include="GameState\States\TileMapTestState.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="Sprites\Animation.cs" />
     <Compile Include="Circle.cs" />

@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Graphics;
+using MonoGame.Extended.Tiled;
 // ReSharper disable InconsistentNaming
 
 namespace Gymnaieprojekt
@@ -17,6 +19,7 @@ namespace Gymnaieprojekt
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private GameStateManager stateManager;
+        
 
         public Game1()
         {
@@ -32,8 +35,7 @@ namespace Gymnaieprojekt
         /// </summary>
         protected override void Initialize()
         {
-            stateManager = new GameStateManager(new FirstState(graphics, Content));
-
+            stateManager = new GameStateManager(new TileMapTestState(graphics, Content));
             base.Initialize();
         }
 
@@ -45,7 +47,6 @@ namespace Gymnaieprojekt
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
         }
 
         /// <summary>
@@ -79,6 +80,7 @@ namespace Gymnaieprojekt
         protected override void Draw(GameTime gameTime)
         {
             stateManager.Draw(gameTime, spriteBatch);
+
             base.Draw(gameTime);
         }
     }
