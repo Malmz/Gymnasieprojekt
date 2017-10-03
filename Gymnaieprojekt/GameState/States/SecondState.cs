@@ -10,9 +10,9 @@ namespace Gymnaieprojekt.GameState.States
     {
         private Sprite test2;
 
-        public SecondState(GraphicsDeviceManager device, ContentManager content) : base(device, content) 
+        public SecondState(Context context) : base(context) 
         {
-            test2 = new Sprite(Content.Load<Texture2D>("Asteroid"), new Vector2(200, 200), new Vector2(48, 48));
+            test2 = new Sprite(Context.Content.Load<Texture2D>("Asteroid"), new Vector2(200, 200), new Vector2(48, 48));
         }
 
         public override void Update(GameTime gameTime, GameStateManager stateManager)
@@ -21,7 +21,7 @@ namespace Gymnaieprojekt.GameState.States
 
             if (InputManager.IsKeyPressed(Keys.G))
             {
-                stateManager.ChangeState(new FirstState(GraphicsDeviceManager, Content));
+                stateManager.ChangeState(new FirstState(Context));
             }
         }
 
