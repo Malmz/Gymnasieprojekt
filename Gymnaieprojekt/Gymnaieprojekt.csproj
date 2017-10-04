@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="Exceptions\AnimationAlreadyExistsException.cs" />
+    <Compile Include="GameState\States\Level1.cs" />
     <Compile Include="GameState\States\TileMapTestState.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="Sprites\Animation.cs" />

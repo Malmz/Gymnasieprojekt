@@ -211,3 +211,13 @@
 /processorParam:TextureFormat=Color
 /build:tilesheet_complete.png
 
+#begin Levels/Level1.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Levels/Level1.tmx
+
+#begin Levels/Level1.tsx
+/importer:
+/processor:
+/build:Levels/Level1.tsx
+
