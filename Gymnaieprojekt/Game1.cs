@@ -40,7 +40,7 @@ namespace Gymnaieprojekt
             ViewportAdapter viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 1024, 768);
             Camera2D camera = new Camera2D(viewportAdapter);
             Context context = new Context(Content, GraphicsDevice, camera, viewportAdapter);
-            stateManager = new GameStateManager(new TileMapTestState(context));
+            stateManager = new GameStateManager(new Level1(context));
             base.Initialize();
         }
 

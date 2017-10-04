@@ -216,8 +216,3 @@
 /processor:TiledMapProcessor
 /build:Levels/Level1.tmx
 
-#begin Levels/Level1.tsx
-/importer:
-/processor:
-/build:Levels/Level1.tsx
-

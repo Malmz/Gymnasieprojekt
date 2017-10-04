@@ -41,10 +41,14 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collision\CollisionWorld.cs" />
+    <Compile Include="Collision\ICollisionObject.cs" />
+    <Compile Include="Collision\ICollisionWorld.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Exceptions\AnimationAlreadyExistsException.cs" />
     <Compile Include="GameState\States\Level1.cs" />
     <Compile Include="GameState\States\TileMapTestState.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="Sprites\Animation.cs" />
     <Compile Include="Circle.cs" />

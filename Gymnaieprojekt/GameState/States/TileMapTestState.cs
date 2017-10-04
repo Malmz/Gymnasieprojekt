@@ -22,7 +22,6 @@ namespace Gymnaieprojekt.GameState.States
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Context.GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
-            //Context.GraphicsDevice.RasterizerState = RasterizerState.CullNone;
             var viewMatrix = Context.Camera.GetViewMatrix();
             var projectionMatrix = Matrix.CreateOrthographicOffCenter(0, Context.GraphicsDevice.Viewport.Width, Context.GraphicsDevice.Viewport.Height, 0, 0f, -1f);
             mapRenderer.Draw(map, ref viewMatrix, ref projectionMatrix);
