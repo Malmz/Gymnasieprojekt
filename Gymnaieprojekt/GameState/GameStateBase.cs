@@ -7,6 +7,8 @@ namespace Gymnaieprojekt.GameState
     public abstract class GameStateBase: IGameState
     {
         protected Context Context { get; }
+        protected ContentManager Content => Context.Content;
+        protected GraphicsDevice GraphicsDevice => Context.GraphicsDevice;
 
         protected GameStateBase(Context context)
         {

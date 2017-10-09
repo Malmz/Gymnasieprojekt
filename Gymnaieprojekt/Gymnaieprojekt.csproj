@@ -41,9 +41,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Collision\CollisionWorld.cs" />
+    <Compile Include="Collision\CollisionSystem.cs" />
     <Compile Include="Collision\ICollisionObject.cs" />
-    <Compile Include="Collision\ICollisionWorld.cs" />
+    <Compile Include="Collision\ICollisionStatic.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Exceptions\AnimationAlreadyExistsException.cs" />
     <Compile Include="GameState\States\Level1.cs" />

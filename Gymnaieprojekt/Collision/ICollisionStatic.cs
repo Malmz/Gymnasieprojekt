@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Gymnaieprojekt.Collision
 {
-    interface ICollisionWorld
+    interface ICollisionStatic
     {
         List<Rectangle> BoundingBoxes();
     }

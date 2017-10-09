@@ -8,7 +8,7 @@ using MonoGame.Extended.Tiled;
 
 namespace Gymnaieprojekt.GameState.States
 {
-    public class Level1 : GameStateBase, ICollisionWorld
+    public class Level1 : GameStateBase, ICollisionStatic
     {
         private TiledMapRenderer mapRenderer;
         private TiledMap map;

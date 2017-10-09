@@ -5,6 +5,6 @@ namespace Gymnaieprojekt.Collision
     interface ICollisionObject
     {
         Rectangle BoundingBox();
-        void OnCollision();
+        void OnCollision(Rectangle other);
     }
 }
