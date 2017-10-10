@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Gymnaieprojekt.Sprites;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Gymnaieprojekt
 {
-    public class Sprite
+    public class Sprite : ISprite
     {
         private Texture2D texture;
         protected Vector2 position;
@@ -32,6 +33,8 @@ namespace Gymnaieprojekt
             this.rotation = rotation;
             this.origin = origin ?? Vector2.Zero;
         }
+
+        public void Update(GameTime gameTime) { }
 
         public Vector2 Position
         {

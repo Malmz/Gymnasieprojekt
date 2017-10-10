@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Gymnaieprojekt.Sprites
 {
-    public class AnimatedSprite : Sprite
+    public class AnimatedSprite : Sprite, ISprite
     {
         private Dictionary<string, Animation> Animations { get; }
         private string currentAnimation = "";
@@ -45,7 +45,7 @@ namespace Gymnaieprojekt.Sprites
             origin = new Vector2(texture.Width / 2f, texture.Height / 2f);
         }
 
-        public void Update(GameTime gameTime)
+        public new void Update(GameTime gameTime)
         {
             //if (string.IsNullOrEmpty(currentAnimation) || animations.Count <= 0) return;
             Animations[currentAnimation].Update(gameTime);
