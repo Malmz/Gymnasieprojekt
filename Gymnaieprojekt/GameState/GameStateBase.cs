@@ -6,15 +6,13 @@ namespace Gymnaieprojekt.GameState
 {
     public abstract class GameStateBase: IGameState
     {
-        public ContentManager Content { get; }
-        public GraphicsDeviceManager GraphicsDeviceManager { get; }
-        public GraphicsDevice GraphicsDevice { get; }
+        protected Context Context { get; }
+        protected ContentManager Content => Context.Content;
+        protected GraphicsDevice GraphicsDevice => Context.GraphicsDevice;
 
-        protected GameStateBase(GraphicsDeviceManager device, ContentManager content)
+        protected GameStateBase(Context context)
         {
-            Content = content;
-            GraphicsDeviceManager = device;
-            GraphicsDevice = device.GraphicsDevice;
+            Context = context;
         }
 
         public abstract void Update(GameTime gameTime, GameStateManager stateManager);
@@ -23,7 +21,7 @@ namespace Gymnaieprojekt.GameState
 
         public void ManageDraw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            Context.GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
 
             Draw(gameTime, spriteBatch);

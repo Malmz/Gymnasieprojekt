@@ -10,6 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\packages\MonoGame.Extended.Content.Pipeline.0.6.568\tools\MonoGame.Extended.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -192,4 +193,26 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:spr_tree_animated.png
+
+#begin testmap.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:testmap.tmx
+
+#begin tilesheet_complete.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:tilesheet_complete.png
+
+#begin Levels/Level1.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Levels/Level1.tmx
 

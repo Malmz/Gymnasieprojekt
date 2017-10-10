@@ -12,12 +12,12 @@ namespace Gymnaieprojekt.GameState.States
         private AnimatedSprite test;
         private Sprite dot;
 
-        public FirstState(GraphicsDeviceManager device, ContentManager content) : base(device, content)
+        public FirstState(Context context) : base(context)
         {
-            dot =  new Sprite(Content.Load<Texture2D>("Pixel"), new Vector2(100, 100), new Vector2(1,1));
+            dot =  new Sprite(Context.Content.Load<Texture2D>("Pixel"), new Vector2(100, 100), new Vector2(1,1));
             test = new AnimatedSprite(new Rectangle(0,0,100,100), new Vector2(100, 100), new Vector2(100, 100));
 
-            test.AddAnimation(new Animation(Content.Load<Texture2D>("spr_tree_animated"), GraphicsDevice, 39, 1, 10, true), "default");
+            test.AddAnimation(new Animation(Context.Content.Load<Texture2D>("spr_tree_animated"), Context.GraphicsDevice, 39, 1, 10, true), "default");
             test.ChangeAnimation("default");
 
             test.Center();
@@ -27,7 +27,7 @@ namespace Gymnaieprojekt.GameState.States
         {
             if (InputManager.IsKeyPressed(Keys.G))
             {
-                stateManager.ChangeState(new SecondState(GraphicsDeviceManager, Content));
+                stateManager.ChangeState(new SecondState(Context));
             }
             if (InputManager.IsKeyDown(Keys.Space))
             {
