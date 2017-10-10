@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Backgrounds\Background.cs" />
     <Compile Include="Exceptions\AnimationAlreadyExistsException.cs" />
+    <Compile Include="Players\Player.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="Sprites\Animation.cs" />
     <Compile Include="Circle.cs" />
