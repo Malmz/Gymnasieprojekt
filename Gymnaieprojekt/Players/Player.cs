@@ -38,12 +38,12 @@ namespace Gymnaieprojekt.Players
             }
         }
 
-        public void AddSubSprite(Sprite sprite, Vector2? offset = null, bool isVisible = true)
+        public void AddSubSprite(Sprite subSprite, Vector2? offset = null, bool isVisible = true)
         {
             var off = Vector2.Zero;
             if (offset != null) off = offset.Value;
 
-            sprites.Add(new PlayerSubSprite(sprite, off, isVisible));
+            sprites.Add(new PlayerSubSprite(subSprite, off, isVisible));
         }
     }
 }
