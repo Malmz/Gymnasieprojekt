@@ -30,12 +30,12 @@ namespace Gymnaieprojekt.Players
 
         public void X(float x)
         {
-            sprite.X(x);
+            sprite.X = x;
         }
 
         public void Y(float y)
         {
-            sprite.Y(y);
+            sprite.Y = y;
         }
     }
 }

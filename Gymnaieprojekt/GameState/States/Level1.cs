@@ -17,10 +17,6 @@ namespace Gymnaieprojekt.GameState.States
         {
             mapRenderer = new TiledMapRenderer(Context.GraphicsDevice);
             map = Context.Content.Load<TiledMap>("Levels\\Level1");
-            foreach (var item in map.TileLayers)
-            {
-                item.Tiles
-            } 
         }
 
         public List<Rectangle> BoundingBoxes()

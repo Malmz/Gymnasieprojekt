@@ -45,12 +45,10 @@
     <Compile Include="Collision\ICollisionObject.cs" />
     <Compile Include="Collision\ICollisionStatic.cs" />
     <Compile Include="Context.cs" />
-    <Compile Include="Exceptions\AnimationAlreadyExistsException.cs" />
     <Compile Include="GameState\States\Level1.cs" />
     <Compile Include="GameState\States\TileMapTestState.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Backgrounds\Background.cs" />
-    <Compile Include="Exceptions\AnimationAlreadyExistsException.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Players\PlayerSubSprite.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
