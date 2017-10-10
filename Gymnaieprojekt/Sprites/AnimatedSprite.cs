@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Gymnaieprojekt.Exceptions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -27,7 +26,7 @@ namespace Gymnaieprojekt.Sprites
             }
             catch (Exception e)
             {
-                throw new AnimationAlreadyExistsException();
+                throw new Exception("Animation already exists. " + e.Message);
             }
         }
 
