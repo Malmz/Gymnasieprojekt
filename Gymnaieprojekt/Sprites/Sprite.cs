@@ -13,6 +13,7 @@ namespace Gymnaieprojekt
         protected Color color;
         protected float rotation;
         protected Vector2 origin;
+        public bool IsVisible { get; set; }
 
         public Sprite(Texture2D texture, Vector2 position, Vector2 size, Color? color = null, Rectangle? srcRect = null, Vector2? origin = null )
         {

@@ -9,5 +9,6 @@ namespace Gymnaieprojekt.Sprites
         void Draw(SpriteBatch spriteBatch);
         float X { get; set; }
         float Y { get; set; }
+        bool IsVisible { get; set; }
     }
 }

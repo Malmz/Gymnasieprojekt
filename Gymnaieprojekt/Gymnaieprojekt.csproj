@@ -50,7 +50,7 @@
     <Compile Include="Level.cs" />
     <Compile Include="Backgrounds\Background.cs" />
     <Compile Include="Players\Player.cs" />
-    <Compile Include="Players\PlayerSubSprite.cs" />
+    <Compile Include="Players\SubItems\ISubItem.cs" />
     <Compile Include="Sprites\AnimatedSprite.cs" />
     <Compile Include="Sprites\Animation.cs" />
     <Compile Include="Circle.cs" />
