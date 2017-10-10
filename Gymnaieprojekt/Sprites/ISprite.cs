@@ -7,5 +7,7 @@ namespace Gymnaieprojekt.Sprites
     {
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
+        void X(float x);
+        void Y(float y);
     }
 }
