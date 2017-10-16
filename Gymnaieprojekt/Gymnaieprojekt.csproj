@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collision\CollisionInfo.cs" />
     <Compile Include="Collision\CollisionSystem.cs" />
     <Compile Include="Collision\ICollisionObject.cs" />
     <Compile Include="Collision\ICollisionStatic.cs" />

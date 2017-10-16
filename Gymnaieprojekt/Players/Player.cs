@@ -20,6 +20,7 @@ namespace Gymnaieprojekt.Players
 
         public void Update(GameTime gameTime)
         {
+            sprite.Y += 3;
             sprite.Update(gameTime);
             foreach (var subSprite in sprites)
             {
@@ -52,7 +53,7 @@ namespace Gymnaieprojekt.Players
             return new Rectangle(sprite.Position.ToPoint(), sprite.Size.ToPoint());
         }
 
-        public void OnCollision(Rectangle other)
+        public void OnCollision(CollisionInfo info)
         {
             throw new System.NotImplementedException();
         }

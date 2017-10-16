@@ -28,13 +28,13 @@ namespace Gymnaieprojekt.Collision
         {
             foreach (var world in staticObjects)
             {
-                foreach (var item in world.BoundingBoxes())
+                foreach (var item in world.Tiles.Keys)
                 {
                     foreach (var dynamic in dynamicObjects)
                     {
                         if (dynamic.BoundingBox().Intersects(item))
                         {
-                            dynamic.OnCollision(item);
+                            dynamic.OnCollision(new CollisionInfo(world.Tiles[item], item));
                         }
                     }
                 }

@@ -11,10 +11,12 @@ namespace Gymnaieprojekt.Sprites
     {
         private Dictionary<string, Animation> Animations { get; }
         private Vector2 scale;
+        private Vector2 size;
         private Animation currentAnimation;
 
         public AnimatedSprite(Vector2 position, Vector2 size, float rotation = 0, Vector2? origin = null,  Color? color = null) : base(position, color, rotation, null, origin)
         {
+            this.size = size;
             Animations = new Dictionary<string, Animation>();
             currentAnimation = null;
         }
@@ -28,6 +30,7 @@ namespace Gymnaieprojekt.Sprites
         public void ChangeAnimation(string name, string animToPlayWhenDone = "")
         {
             currentAnimation = Animations[name];
+            Size = size;
             if (animToPlayWhenDone == "") return;
             currentAnimation.ToPlayWhenDone = Animations[animToPlayWhenDone];
         }

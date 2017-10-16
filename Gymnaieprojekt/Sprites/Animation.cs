@@ -15,12 +15,12 @@ namespace Gymnaieprojekt.Sprites
         private List<Frame> frames;
         private int frameIndex;
         private int counter;
-        public bool Looping; 
+        public bool looping; 
 
         public Animation(List<Frame> frames, bool looping)
         {
             this.frames = frames;
-            Looping = looping;
+            this.looping = looping;
         }
 
         public Animation(Texture2D spriteSheet, GraphicsDevice graphics, int horizontalCount, int verticalCount, int speed, bool looping, bool[][] skipThese = null)
@@ -30,6 +30,8 @@ namespace Gymnaieprojekt.Sprites
 
             var width = spriteSheet.Width / horizontalCount;
             var height = spriteSheet.Height / verticalCount;
+
+            this.looping = looping;
                 
             for (int i = 0; i < horizontalCount; i++)
             {
@@ -61,7 +63,7 @@ namespace Gymnaieprojekt.Sprites
 
         public Animation(List<Texture2D> frames, bool looping)
         {
-            Looping = looping;
+            this.looping = looping;
 
             var tempFrames = new List<Frame>();
 
@@ -79,7 +81,7 @@ namespace Gymnaieprojekt.Sprites
                 if (++frameIndex >= frames.Count)
                 {
                     frameIndex = 0;
-                    if(!Looping)
+                    if(!looping)
                         Done = true;
                 }
                 counter = 0;

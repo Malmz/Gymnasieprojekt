@@ -8,7 +8,7 @@ using MonoGame.Extended.Tiled;
 
 namespace Gymnaieprojekt.GameState.States
 {
-    public class Level1 : GameStateBase, ICollisionStatic
+    public class Level1 : GameStateBase
     {
         private TiledMapRenderer mapRenderer;
         private TiledMap map;
@@ -19,18 +19,21 @@ namespace Gymnaieprojekt.GameState.States
             map = Context.Content.Load<TiledMap>("Levels\\Level1");
         }
 
-        public List<Rectangle> BoundingBoxes()
+        public List<Rectangle> Tiles
         {
-            List<Rectangle> boxes = new List<Rectangle>();
-            foreach (var item in map.ObjectLayers)
+            get
             {
-                foreach (var inner in item.Objects)
+                List<Rectangle> boxes = new List<Rectangle>();
+                foreach (var item in map.ObjectLayers)
                 {
-                    var size = new Vector2(inner.Size.Width, inner.Size.Height);
-                    boxes.Add(new Rectangle(inner.Position.ToPoint(), size.ToPoint()));
+                    foreach (var inner in item.Objects)
+                    {
+                        var size = new Vector2(inner.Size.Width, inner.Size.Height);
+                        boxes.Add(new Rectangle(inner.Position.ToPoint(), size.ToPoint()));
+                    }
                 }
+                return boxes;
             }
-            return boxes;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

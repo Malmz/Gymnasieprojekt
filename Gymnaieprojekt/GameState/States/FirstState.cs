@@ -15,7 +15,7 @@ namespace Gymnaieprojekt.GameState.States
         public FirstState(Context context) : base(context)
         {
             dot =  new Sprite(Context.Content.Load<Texture2D>("Pixel"), new Vector2(100, 100), new Vector2(1,1));
-            test = new AnimatedSprite(new Rectangle(0,0,100,100), new Vector2(100, 100), new Vector2(100, 100));
+            test = new AnimatedSprite(new Vector2(100, 100), new Vector2(50, 50));
 
             test.AddAnimation(new Animation(Context.Content.Load<Texture2D>("spr_tree_animated"), Context.GraphicsDevice, 39, 1, 10, true), "default");
             test.ChangeAnimation("default");
