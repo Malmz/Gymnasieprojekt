@@ -8,7 +8,11 @@ namespace Gymnaieprojekt.Collision
         private List<ICollisionStatic> staticObjects;
         private List<ICollisionObject> dynamicObjects;
 
-        public CollisionSystem() { }
+        public CollisionSystem()
+        {
+            staticObjects = new List<ICollisionStatic>();
+            dynamicObjects = new List<ICollisionObject>();
+        }
 
         public void AddWorld(ICollisionStatic world)
         {
