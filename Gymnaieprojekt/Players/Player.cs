@@ -2,11 +2,12 @@
 using Gymnaieprojekt.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Gymnaieprojekt.Collision;
 // ReSharper disable InconsistentNaming
 
 namespace Gymnaieprojekt.Players
 {
-    public class Player
+    public class Player : ICollisionObject
     {
         private readonly AnimatedSprite sprite;
         private readonly List<PlayerSubSprite> sprites;
@@ -44,6 +45,16 @@ namespace Gymnaieprojekt.Players
             if (offset != null) off = offset.Value;
 
             sprites.Add(new PlayerSubSprite(subSprite, off, isVisible));
+        }
+
+        public Rectangle BoundingBox()
+        {
+            
+        }
+
+        public void OnCollision(Rectangle other)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
