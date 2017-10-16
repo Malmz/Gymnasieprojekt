@@ -13,7 +13,7 @@ namespace Gymnaieprojekt.Sprites
         private Vector2 scale;
         private Animation currentAnimation;
 
-        public AnimatedSprite(Rectangle srcRect, Vector2 position, Vector2 size, float rotation = 0, Vector2? origin = null,  Color? color = null) : base(position, color, rotation, srcRect, origin)
+        public AnimatedSprite(Vector2 position, Vector2 size, float rotation = 0, Vector2? origin = null,  Color? color = null) : base(position, color, rotation, null, origin)
         {
             Animations = new Dictionary<string, Animation>();
             currentAnimation = null;
@@ -59,7 +59,7 @@ namespace Gymnaieprojekt.Sprites
                 position: position,
                 scale: scale,
                 sourceRectangle: null,
-                color: Color.White,
+                color: color,
                 rotation: rotation,
                 origin: origin + frame.Origin,
                 effects: SpriteEffects.None,
