@@ -8,7 +8,7 @@ namespace Gymnaieprojekt.Sprites
 {
     public class Animation
     {
-        public string ToPlayWhenDone { get; set; }
+        public Animation ToPlayWhenDone { get; set; } = null;
         public bool Done { get; private set; }
         public int AnimationSpeed { get; set; } = 5;
 

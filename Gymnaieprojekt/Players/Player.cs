@@ -39,7 +39,7 @@ namespace Gymnaieprojekt.Players
             }
         }
 
-        public void AddSubSprite(Sprite subSprite, Vector2? offset = null, bool isVisible = true)
+        public void AddSubSprite(BaseSprite subSprite, Vector2? offset = null, bool isVisible = true)
         {
             var off = Vector2.Zero;
             if (offset != null) off = offset.Value;
@@ -49,7 +49,7 @@ namespace Gymnaieprojekt.Players
 
         public Rectangle BoundingBox()
         {
-            
+            return new Rectangle(sprite.Position.ToPoint(), sprite.Size.ToPoint());
         }
 
         public void OnCollision(Rectangle other)

@@ -7,11 +7,11 @@ namespace Gymnaieprojekt.Players
 {
     public class PlayerSubSprite
     {
-        private readonly ISprite sprite;
+        private readonly BaseSprite sprite;
         public Vector2 offset;
         public bool isVisible;
 
-        public PlayerSubSprite(ISprite sprite, Vector2 offset, bool isVisible = true)
+        public PlayerSubSprite(BaseSprite sprite, Vector2 offset, bool isVisible = true)
         {
             this.sprite = sprite;
             this.offset = offset;
