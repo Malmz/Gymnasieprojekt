@@ -10,7 +10,7 @@ using Gymnaieprojekt.Sprites;
 
 namespace Gymnaieprojekt
 {
-    class Level : GameStateBase, ICollisionStatic
+    class Level : GameStateBase, IGameState, ICollisionStatic
     {
         protected TiledMapRenderer mapRenderer;
         protected TiledMap map;
@@ -50,7 +50,7 @@ namespace Gymnaieprojekt
                             {
                                 if (collideTiles.Contains(tileLayer.Tiles[i].GlobalIdentifier))
                                 {
-                                    var rect = new Rectangle(i % tileLayer.Width, i / tileLayer.Width, tileLayer.TileWidth, tileLayer.TileHeight);
+                                    var rect = new Rectangle(i % tileLayer.Width * tileLayer.TileWidth, i / tileLayer.Width * tileLayer.TileHeight, tileLayer.TileWidth, tileLayer.TileHeight);
                                     boundingBoxCache.Add(rect, tileLayer.Tiles[i].GlobalIdentifier);
                                 }
                             }
@@ -61,7 +61,7 @@ namespace Gymnaieprojekt
                             {
                                 if (tileLayer.Tiles[i].GlobalIdentifier != 0)
                                 {
-                                    var rect = new Rectangle(i % tileLayer.Width, i / tileLayer.Width, tileLayer.TileWidth, tileLayer.TileHeight);
+                                    var rect = new Rectangle(i % tileLayer.Width * tileLayer.TileWidth, i / tileLayer.Width * tileLayer.TileHeight, tileLayer.TileWidth, tileLayer.TileHeight);
                                     boundingBoxCache.Add(rect, tileLayer.Tiles[i].GlobalIdentifier);
                                 }
                             }
@@ -80,6 +80,16 @@ namespace Gymnaieprojekt
             var projectionMatrix = Matrix.CreateOrthographicOffCenter(0, Context.GraphicsDevice.Viewport.Width, Context.GraphicsDevice.Viewport.Height, 0, 0f, -1f);
             mapRenderer.Draw(map, ref viewMatrix, ref projectionMatrix);
             player.Draw(spriteBatch);
+        }
+
+        public new void ManageDraw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            Context.GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin(transformMatrix: Context.Camera.GetViewMatrix());
+
+            Draw(gameTime, spriteBatch);
+
+            spriteBatch.End();
         }
 
         public override void Update(GameTime gameTime, GameStateManager stateManager)
