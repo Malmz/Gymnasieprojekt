@@ -5,8 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Tiled;
-using Gymnaieprojekt.Players;
-using Gymnaieprojekt.Sprites;
 
 namespace Gymnaieprojekt
 {
@@ -17,7 +15,6 @@ namespace Gymnaieprojekt
         protected CollisionSystem collisionController;
         protected List<int> collideTiles;
         private Dictionary<Rectangle, int> boundingBoxCache;
-        protected Player player;
 
         public Level(Context context, string levelName, List<int> collideTiles = null) : base(context)
         {
@@ -26,13 +23,6 @@ namespace Gymnaieprojekt
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
             this.collideTiles = collideTiles;
             map = Content.Load<TiledMap>(levelName);
-            var playerSprite = new AnimatedSprite(new Vector2(100, 50), new Vector2(50, 50));
-            var animation = new Animation(Content.Load<Texture2D>("ship0TextureSheet"), GraphicsDevice, 3, 1, 50, true);
-            playerSprite.AddAnimation(animation, "default");
-            playerSprite.ChangeAnimation("default");
-            playerSprite.Center();
-            player = new Player(playerSprite);
-            collisionController.AddObject(player);
         }
 
         public Dictionary<Rectangle, int> Tiles
@@ -79,7 +69,6 @@ namespace Gymnaieprojekt
             var viewMatrix = Context.Camera.GetViewMatrix();
             var projectionMatrix = Matrix.CreateOrthographicOffCenter(0, Context.GraphicsDevice.Viewport.Width, Context.GraphicsDevice.Viewport.Height, 0, 0f, -1f);
             mapRenderer.Draw(map, ref viewMatrix, ref projectionMatrix);
-            player.Draw(spriteBatch);
         }
 
         public new void ManageDraw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -95,7 +84,6 @@ namespace Gymnaieprojekt
         public override void Update(GameTime gameTime, GameStateManager stateManager)
         {
             collisionController.Collide();
-            player.Update(gameTime);
             mapRenderer.Update(map, gameTime);
         }
     }
