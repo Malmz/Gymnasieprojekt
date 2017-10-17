@@ -8,12 +8,12 @@ using MonoGame.Extended.Tiled;
 
 namespace Gymnaieprojekt
 {
-    class Level : GameStateBase, IGameState, ICollisionStatic
+    public abstract class Level : GameStateBase, IGameState, ICollisionStatic
     {
-        protected TiledMapRenderer mapRenderer;
-        protected TiledMap map;
-        protected CollisionSystem collisionController;
-        protected List<int> collideTiles;
+        private TiledMapRenderer mapRenderer;
+        private TiledMap map;
+        private CollisionSystem collisionController;
+        private List<int> collideTiles;
         private Dictionary<Rectangle, int> boundingBoxCache;
 
         public Level(Context context, string levelName, List<int> collideTiles = null) : base(context)
@@ -69,7 +69,10 @@ namespace Gymnaieprojekt
             var viewMatrix = Context.Camera.GetViewMatrix();
             var projectionMatrix = Matrix.CreateOrthographicOffCenter(0, Context.GraphicsDevice.Viewport.Width, Context.GraphicsDevice.Viewport.Height, 0, 0f, -1f);
             mapRenderer.Draw(map, ref viewMatrix, ref projectionMatrix);
+            InnerDraw(gameTime, spriteBatch);
         }
+
+        protected abstract void InnerDraw(GameTime gameTime, SpriteBatch spriteBatch);
 
         public new void ManageDraw(GameTime gameTime, SpriteBatch spriteBatch)
         {
@@ -85,6 +88,9 @@ namespace Gymnaieprojekt
         {
             collisionController.Collide();
             mapRenderer.Update(map, gameTime);
+            InnerUpdate(gameTime, stateManager);
         }
+
+        protected abstract void InnerUpdate(GameTime gameTime, GameStateManager stateManager);
     }
 }

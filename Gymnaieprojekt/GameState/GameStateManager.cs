@@ -40,13 +40,13 @@ namespace Gymnaieprojekt.GameState
             isPaused = false;
         }
 
-        public void Update(GameTime gameTime, GameStateManager stateManager)
+        public void Update(GameTime gameTime)
         {
             if (isPaused) return;
 
             InputManager.Update(gameTime);
 
-            currentGameState.Update(gameTime, stateManager);
+            currentGameState.Update(gameTime, this);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

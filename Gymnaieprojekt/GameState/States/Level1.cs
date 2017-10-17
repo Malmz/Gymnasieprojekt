@@ -8,51 +8,21 @@ using MonoGame.Extended.Tiled;
 
 namespace Gymnaieprojekt.GameState.States
 {
-    public class Level1 : GameStateBase
+    public class Level1 : Level
     {
-        private TiledMapRenderer mapRenderer;
-        private TiledMap map;
-
-        public Level1(Context context) : base(context)
+        public Level1(Context context) : base(context, "Levels/Level1")
         {
-            mapRenderer = new TiledMapRenderer(Context.GraphicsDevice);
-            map = Context.Content.Load<TiledMap>("Levels\\Level1");
+
         }
 
-        public List<Rectangle> Tiles
+        protected override void InnerDraw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            get
-            {
-                List<Rectangle> boxes = new List<Rectangle>();
-                foreach (var item in map.ObjectLayers)
-                {
-                    foreach (var inner in item.Objects)
-                    {
-                        var size = new Vector2(inner.Size.Width, inner.Size.Height);
-                        boxes.Add(new Rectangle(inner.Position.ToPoint(), size.ToPoint()));
-                    }
-                }
-                return boxes;
-            }
+            throw new System.NotImplementedException();
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void InnerUpdate(GameTime gameTime, GameStateManager stateManager)
         {
-            Context.GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
-            var viewMatrix = Context.Camera.GetViewMatrix();
-            var projectionMatrix = Matrix.CreateOrthographicOffCenter(0, Context.GraphicsDevice.Viewport.Width, Context.GraphicsDevice.Viewport.Height, 0, 0f, -1f);
-            mapRenderer.Draw(map, ref viewMatrix, ref projectionMatrix);
-        }
-
-        public override void Update(GameTime gameTime, GameStateManager stateManager)
-        {
-            if (InputManager.IsKeyDown(Keys.R))
-                Context.Camera.ZoomIn(2 * gameTime.ElapsedGameTime.Milliseconds / 1000.0f);
-
-            if (InputManager.IsKeyDown(Keys.F))
-                Context.Camera.ZoomOut(2 * gameTime.ElapsedGameTime.Milliseconds / 1000.0f);
-
-            mapRenderer.Update(map, gameTime);
+            throw new System.NotImplementedException();
         }
     }
 }
