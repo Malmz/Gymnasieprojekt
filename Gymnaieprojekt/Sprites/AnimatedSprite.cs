@@ -7,69 +7,83 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Gymnaieprojekt.Sprites
 {
-    public class AnimatedSprite : Sprite, ISprite
+    public class AnimatedSprite : BaseSprite
     {
         private Dictionary<string, Animation> Animations { get; }
-        private string currentAnimation = "";
+        private Vector2 scale;
+        private Vector2 size;
+        private Animation currentAnimation;
 
-        public AnimatedSprite(Rectangle srcRect, Vector2 position, Vector2 size, float rotation = 0, Vector2? origin = null,  Color? color = null) : base(position, srcRect, color, rotation, origin)
+        public AnimatedSprite(Vector2 position, Vector2 size, float rotation = 0, Vector2? origin = null,  Color? color = null) : base(position, color, rotation, null, origin)
         {
+            this.size = size;
             Animations = new Dictionary<string, Animation>();
+            currentAnimation = null;
         }
 
         public void AddAnimation(Animation anim, string name)
         {
-            try
-            {
                 if (name == "") throw new Exception();
                 Animations.Add(name, anim);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Animation already exists. " + e.Message);
-            }
         }
 
         public void ChangeAnimation(string name, string animToPlayWhenDone = "")
         {
-            currentAnimation = name;
+            currentAnimation = Animations[name];
+            Size = size;
             if (animToPlayWhenDone == "") return;
-            Animations[currentAnimation].ToPlayWhenDone = animToPlayWhenDone;
+            currentAnimation.ToPlayWhenDone = Animations[animToPlayWhenDone];
         }
 
-        public new void Center()
+        public override void Center()
         {
-            var texture = Animations[currentAnimation].GetFrame().Texture;
+            var texture = currentAnimation.GetFrame().Texture;
 
             origin = new Vector2(texture.Width / 2f, texture.Height / 2f);
         }
 
-        public new void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             //if (string.IsNullOrEmpty(currentAnimation) || animations.Count <= 0) return;
-            Animations[currentAnimation].Update(gameTime);
-            if (Animations[currentAnimation].Done && !string.IsNullOrEmpty(Animations[currentAnimation].ToPlayWhenDone))
+            currentAnimation.Update(gameTime);
+            if (currentAnimation.Done && currentAnimation.ToPlayWhenDone == null)
             {
-                currentAnimation = Animations[currentAnimation].ToPlayWhenDone;
+                currentAnimation = currentAnimation.ToPlayWhenDone;
             }
 
         }
 
-        public new void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            var frame = Animations[currentAnimation].GetFrame();
+            var frame = currentAnimation.GetFrame();
 
             spriteBatch.Draw(
                 texture: frame.Texture,
                 position: position,
                 scale: scale,
                 sourceRectangle: null,
-                color: Color.White,
+                color: color,
                 rotation: rotation,
                 origin: origin + frame.Origin,
                 effects: SpriteEffects.None,
                 layerDepth: 0
             );
+        }
+
+        public override Vector2 Size
+        {
+            get { return scale * currentAnimation.GetFrame().Texture.Bounds.Size.ToVector2(); }
+            set { scale = value / currentAnimation.GetFrame().Texture.Bounds.Size.ToVector2(); }
+        }
+        public override float Width
+        {
+            get { return scale.X * currentAnimation.GetFrame().Texture.Width; }
+            set { scale.X = value / currentAnimation.GetFrame().Texture.Width; }
+        }
+        public override float Height
+        {
+            get { return scale.Y * currentAnimation.GetFrame().Texture.Height; }
+            set { scale.Y = value / currentAnimation.GetFrame().Texture.Height; }
         }
     }
 }

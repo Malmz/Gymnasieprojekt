@@ -73,7 +73,7 @@ namespace Gymnaieprojekt
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            stateManager.Update(gameTime, stateManager);
+            stateManager.Update(gameTime);
 
             base.Update(gameTime);
         }

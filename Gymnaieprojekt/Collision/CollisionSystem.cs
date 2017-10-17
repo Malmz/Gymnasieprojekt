@@ -8,7 +8,11 @@ namespace Gymnaieprojekt.Collision
         private List<ICollisionStatic> staticObjects;
         private List<ICollisionObject> dynamicObjects;
 
-        public CollisionSystem() { }
+        public CollisionSystem()
+        {
+            staticObjects = new List<ICollisionStatic>();
+            dynamicObjects = new List<ICollisionObject>();
+        }
 
         public void AddWorld(ICollisionStatic world)
         {
@@ -24,13 +28,13 @@ namespace Gymnaieprojekt.Collision
         {
             foreach (var world in staticObjects)
             {
-                foreach (var item in world.BoundingBoxes())
+                foreach (var item in world.Tiles.Keys)
                 {
                     foreach (var dynamic in dynamicObjects)
                     {
                         if (dynamic.BoundingBox().Intersects(item))
                         {
-                            dynamic.OnCollision(item);
+                            dynamic.OnCollision(new CollisionInfo(world.Tiles[item], item));
                         }
                     }
                 }

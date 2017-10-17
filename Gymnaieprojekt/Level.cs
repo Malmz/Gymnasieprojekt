@@ -8,55 +8,59 @@ using MonoGame.Extended.Tiled;
 
 namespace Gymnaieprojekt
 {
-    class Level : GameStateBase, ICollisionStatic
+    public abstract class Level : GameStateBase, IGameState, ICollisionStatic
     {
-        protected TiledMapRenderer mapRenderer;
-        protected TiledMap map;
-        protected CollisionSystem collisionController;
-        protected List<int> collideTiles;
-        private List<Rectangle> boundingBoxCache;
+        private TiledMapRenderer mapRenderer;
+        private TiledMap map;
+        private CollisionSystem collisionController;
+        private List<int> collideTiles;
+        private Dictionary<Rectangle, int> boundingBoxCache;
 
         public Level(Context context, string levelName, List<int> collideTiles = null) : base(context)
         {
             collisionController = new CollisionSystem();
+            collisionController.AddWorld(this);
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
             this.collideTiles = collideTiles;
             map = Content.Load<TiledMap>(levelName);
         }
 
-        public List<Rectangle> BoundingBoxes()
+        public Dictionary<Rectangle, int> Tiles
         {
-            if (boundingBoxCache == null)
+            get
             {
-                boundingBoxCache = new List<Rectangle>();
-                foreach (var tileLayer in map.TileLayers)
+                if (boundingBoxCache == null)
                 {
-                    if (collideTiles != null)
+                    boundingBoxCache = new Dictionary<Rectangle, int>();
+                    foreach (var tileLayer in map.TileLayers)
                     {
-                        for (int i = 0; i < tileLayer.Tiles.Count; i++)
+                        if (collideTiles != null)
                         {
-                            if (collideTiles.Contains(tileLayer.Tiles[i].GlobalIdentifier))
+                            for (int i = 0; i < tileLayer.Tiles.Count; i++)
                             {
-                                var rect = new Rectangle(i % tileLayer.Width, i / tileLayer.Width, tileLayer.TileWidth, tileLayer.TileHeight);
-                                boundingBoxCache.Add(rect);
+                                if (collideTiles.Contains(tileLayer.Tiles[i].GlobalIdentifier))
+                                {
+                                    var rect = new Rectangle(i % tileLayer.Width * tileLayer.TileWidth, i / tileLayer.Width * tileLayer.TileHeight, tileLayer.TileWidth, tileLayer.TileHeight);
+                                    boundingBoxCache.Add(rect, tileLayer.Tiles[i].GlobalIdentifier);
+                                }
                             }
                         }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < tileLayer.Tiles.Count; i++)
+                        else
                         {
-                            if (tileLayer.Tiles[i].GlobalIdentifier != 0)
+                            for (int i = 0; i < tileLayer.Tiles.Count; i++)
                             {
-                                var rect = new Rectangle(i % tileLayer.Width, i / tileLayer.Width, tileLayer.TileWidth, tileLayer.TileHeight);
-                                boundingBoxCache.Add(rect);
+                                if (tileLayer.Tiles[i].GlobalIdentifier != 0)
+                                {
+                                    var rect = new Rectangle(i % tileLayer.Width * tileLayer.TileWidth, i / tileLayer.Width * tileLayer.TileHeight, tileLayer.TileWidth, tileLayer.TileHeight);
+                                    boundingBoxCache.Add(rect, tileLayer.Tiles[i].GlobalIdentifier);
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
+                return boundingBoxCache;
             }
-            return boundingBoxCache;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -65,12 +69,28 @@ namespace Gymnaieprojekt
             var viewMatrix = Context.Camera.GetViewMatrix();
             var projectionMatrix = Matrix.CreateOrthographicOffCenter(0, Context.GraphicsDevice.Viewport.Width, Context.GraphicsDevice.Viewport.Height, 0, 0f, -1f);
             mapRenderer.Draw(map, ref viewMatrix, ref projectionMatrix);
+            InnerDraw(gameTime, spriteBatch);
+        }
+
+        protected abstract void InnerDraw(GameTime gameTime, SpriteBatch spriteBatch);
+
+        public new void ManageDraw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            Context.GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin(transformMatrix: Context.Camera.GetViewMatrix());
+
+            Draw(gameTime, spriteBatch);
+
+            spriteBatch.End();
         }
 
         public override void Update(GameTime gameTime, GameStateManager stateManager)
         {
             collisionController.Collide();
             mapRenderer.Update(map, gameTime);
+            InnerUpdate(gameTime, stateManager);
         }
+
+        protected abstract void InnerUpdate(GameTime gameTime, GameStateManager stateManager);
     }
 }

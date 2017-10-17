@@ -5,6 +5,6 @@ namespace Gymnaieprojekt.Collision
 {
     interface ICollisionStatic
     {
-        List<Rectangle> BoundingBoxes();
+        Dictionary<Rectangle, int> Tiles { get; }
     }
 }
