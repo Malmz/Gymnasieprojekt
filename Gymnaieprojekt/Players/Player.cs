@@ -27,6 +27,8 @@ namespace Gymnaieprojekt.Players
         private Keys LeftKey = Keys.Left;
         private Keys RightKey = Keys.Right;
 
+        private Rectangle oldRect;
+
         public Player(AnimatedSprite sprite)
         {
             sprites = new List<PlayerSubSprite>();
@@ -58,6 +60,7 @@ namespace Gymnaieprojekt.Players
                 subSprite.X(sprite.X + subSprite.offset.X);
                 subSprite.Y(sprite.Y + subSprite.offset.Y);
             }
+            oldRect = new Rectangle((int)sprite.X, (int)sprite.Y, (int)sprite.Width, (int)sprite.Height);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -85,15 +88,41 @@ namespace Gymnaieprojekt.Players
 
         public void OnCollision(CollisionInfo info)
         {
-            //todo
-        }
+            var playerBottom = sprite.Y + sprite.Height;
+            var tileBottom = info.BoundingBox.Y + info.BoundingBox.Height;
+            var playerRight = sprite.X + sprite.Width;
+            var tileRight = info.BoundingBox.X + info.BoundingBox.Width;
 
-        private bool IsFirstCloser(double value, double first, double second)
-        {
-            var firstValue = Math.Abs(value - first);
-            var secondValue = Math.Abs(value - second);
+            var bottomCollis = tileBottom - sprite.Y;
+            var topCollis = playerBottom - info.BoundingBox.Y;
+            var leftCollis = playerRight - info.BoundingBox.X;
+            var rightCollis = tileRight - sprite.X;
 
-            return firstValue > secondValue;
+            if (topCollis < bottomCollis && topCollis < leftCollis && topCollis < rightCollis)
+            {
+                //Top collision (player ontop object)
+                sprite.Y = info.BoundingBox.Y - sprite.Height;
+                yVelocity = 0;
+                onGround = true;
+            }
+            if (bottomCollis < topCollis && bottomCollis < leftCollis && bottomCollis < rightCollis)
+            {
+                //Bottom collision (player below object)
+                sprite.Y = info.BoundingBox.Y + info.BoundingBox.Height;
+                yVelocity = 0;
+            }
+            if (leftCollis < rightCollis && leftCollis < topCollis && leftCollis < bottomCollis)
+            {
+                //Left collision (player left of object)
+                sprite.X = info.BoundingBox.X - sprite.Width;
+                xVelocity = 0;
+            }
+            if (rightCollis < leftCollis && rightCollis < topCollis && rightCollis < bottomCollis)
+            {
+                //Right collision (player right of object)
+                sprite.X = info.BoundingBox.X + info.BoundingBox.Right;
+                xVelocity = 0;
+            }
         }
 
         private void OnTopCollision(CollisionInfo info)
