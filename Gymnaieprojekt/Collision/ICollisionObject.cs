@@ -2,7 +2,7 @@
 
 namespace Gymnaieprojekt.Collision
 {
-    interface ICollisionObject
+    public interface ICollisionObject
     {
         Rectangle BoundingBox();
         void OnCollision(CollisionInfo info);

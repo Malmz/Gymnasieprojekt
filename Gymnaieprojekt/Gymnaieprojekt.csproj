@@ -48,6 +48,8 @@
     <Compile Include="Context.cs" />
     <Compile Include="GameState\States\Level1.cs" />
     <Compile Include="GameState\States\TileMapTestState.cs" />
+    <Compile Include="GlobalConstants.cs" />
+    <Compile Include="HelperFunctions.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Backgrounds\Background.cs" />
     <Compile Include="Players\Player.cs" />
