@@ -2,6 +2,7 @@
 using Gymnaieprojekt.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 
 namespace Gymnaieprojekt.GameState.States
 {
@@ -20,14 +21,15 @@ namespace Gymnaieprojekt.GameState.States
             AddCollisionObject(player);
         }
 
-        protected override void InnerDraw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            player.Draw(spriteBatch);
-        }
-
         protected override void InnerUpdate(GameTime gameTime, GameStateManager stateManager)
         {
             player.Update(gameTime);
+            player.CenterCameraOnPlayer(Camera, GraphicsDevice);
+        }
+
+        protected override void InnerDraw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            player.Draw(spriteBatch);
         }
     }
 }
