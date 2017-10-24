@@ -22,7 +22,8 @@ namespace Gymnaieprojekt.Backgrounds
         }
         public void AddLayer(Texture2D texture)
         {
-            layers.Add(new Sprite(texture, Vector2.Zero, new Vector2(texture.Width, texture.Height)));
+            var sprite = new Sprite(texture, Vector2.Zero, new Vector2(texture.Width, texture.Height));
+            layers.Add(sprite);
         }
 
         public void Update(GameTime gameTime, RectangleF boundingRect)

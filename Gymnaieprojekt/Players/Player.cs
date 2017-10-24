@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Gymnaieprojekt.Collision;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 
 // ReSharper disable InconsistentNaming
 
@@ -138,14 +139,16 @@ namespace Gymnaieprojekt.Players
         private void OnLeftCollision(CollisionInfo info)
         {
             //Left collision (player left of object)
-            sprite.X -= xVelocity;
+            if(yVelocity > 0 ) sprite.X -= xVelocity;
+            else if (yVelocity < 0) sprite.X += xVelocity;
             xVelocity = 0;
         }
 
         private void OnRightCollision(CollisionInfo info)
         {
             //Right collision (player right of object)
-            sprite.X += xVelocity;
+            if (yVelocity > 0) sprite.X += xVelocity;
+            else if (yVelocity < 0) sprite.X -= xVelocity;
             xVelocity = 0;
         }
 
@@ -160,7 +163,15 @@ namespace Gymnaieprojekt.Players
 
         private void EndJump()
         {
-            //if (yVelocity < -cancelJumpVelocity) yVelocity = -cancelJumpVelocity;
+            if (yVelocity < -cancelJumpVelocity) yVelocity = -cancelJumpVelocity;
+        }
+
+
+        public void CenterCameraOnPlayer(Camera2D camera, GraphicsDevice graphicsDevice)
+        {
+            camera.Position = new Vector2(
+                MathHelper.Clamp(sprite.X - sprite.Width / 2f - graphicsDevice.Viewport.Width / 2f, 0f, (float)double.MaxValue),
+                camera.Position.Y);
         }
     }
 }

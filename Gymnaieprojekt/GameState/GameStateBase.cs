@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 
 namespace Gymnaieprojekt.GameState
 {
@@ -9,6 +10,7 @@ namespace Gymnaieprojekt.GameState
         protected Context Context { get; }
         protected ContentManager Content => Context.Content;
         protected GraphicsDevice GraphicsDevice => Context.GraphicsDevice;
+        protected Camera2D Camera => Context.Camera;
 
         protected GameStateBase(Context context)
         {
