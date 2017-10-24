@@ -37,7 +37,6 @@ namespace Gymnaieprojekt.Players
 
         public void Update(GameTime gameTime)
         {
-
             if (InputManager.IsKeyDown(RightKey) && xVelocity <= playerSpeed) xVelocity = playerSpeed;
             else if (InputManager.IsKeyDown(LeftKey) && xVelocity >= -playerSpeed) xVelocity = -playerSpeed;
 
@@ -101,34 +100,30 @@ namespace Gymnaieprojekt.Players
             if (topCollis < bottomCollis && topCollis < leftCollis && topCollis < rightCollis)
             {
                 //Top collision (player ontop object)
-                sprite.Y = info.BoundingBox.Y - sprite.Height;
-                yVelocity = 0;
+                OnTopCollision(info);
                 onGround = true;
             }
             if (bottomCollis < topCollis && bottomCollis < leftCollis && bottomCollis < rightCollis)
             {
                 //Bottom collision (player below object)
-                sprite.Y = info.BoundingBox.Y + info.BoundingBox.Height;
-                yVelocity = 0;
+                OnBottomCollision(info);
             }
             if (leftCollis < rightCollis && leftCollis < topCollis && leftCollis < bottomCollis)
             {
                 //Left collision (player left of object)
-                sprite.X = info.BoundingBox.X - sprite.Width;
-                xVelocity = 0;
+                OnLeftCollision(info);
             }
             if (rightCollis < leftCollis && rightCollis < topCollis && rightCollis < bottomCollis)
             {
                 //Right collision (player right of object)
-                sprite.X = info.BoundingBox.X + info.BoundingBox.Right;
-                xVelocity = 0;
+                OnRightCollision(info);
             }
         }
 
         private void OnTopCollision(CollisionInfo info)
         {
             //Top collision (player ontop)
-            sprite.Y = info.BoundingBox.Y - sprite.Height;
+            sprite.Y -= yVelocity;
             yVelocity = 0;
             onGround = true;
         }
@@ -136,21 +131,21 @@ namespace Gymnaieprojekt.Players
         private void OnBottomCollision(CollisionInfo info)
         {
             //Bottom collision (player below)
-            sprite.Y = info.BoundingBox.Y + info.BoundingBox.Height;
+            sprite.Y -= yVelocity;
             yVelocity = 0;
         }
 
         private void OnLeftCollision(CollisionInfo info)
         {
             //Left collision (player left of object)
-            sprite.X = info.BoundingBox.X - sprite.Width;
+            sprite.X -= xVelocity;
             xVelocity = 0;
         }
 
         private void OnRightCollision(CollisionInfo info)
         {
             //Right collision (player right of object)
-            sprite.X = info.BoundingBox.X + info.BoundingBox.Right;
+            sprite.X += xVelocity;
             xVelocity = 0;
         }
 
@@ -165,7 +160,7 @@ namespace Gymnaieprojekt.Players
 
         private void EndJump()
         {
-            if (yVelocity < -cancelJumpVelocity) yVelocity = -cancelJumpVelocity;
+            //if (yVelocity < -cancelJumpVelocity) yVelocity = -cancelJumpVelocity;
         }
     }
 }

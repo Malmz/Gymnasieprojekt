@@ -13,7 +13,7 @@ namespace Gymnaieprojekt.GameState.States
             var playerAnimation = new AnimatedSprite(
                 new Vector2(100, 100),
                 new Vector2(100, 100));
-            playerAnimation.AddAnimation(new Animation(Content.Load<Texture2D>("ship0TextureSheet"), GraphicsDevice, 3, 1, 10, true), "default");
+            playerAnimation.AddAnimation(new Animation(Content.Load<Texture2D>("ship1TextureSheet"), GraphicsDevice, 3, 1, 10, true), "default");
             playerAnimation.ChangeAnimation("default");
             player = new Player(playerAnimation);
 
