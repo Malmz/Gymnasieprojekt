@@ -68,8 +68,8 @@ namespace Gymnaieprojekt
             Context.GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
             var viewMatrix = Context.Camera.GetViewMatrix();
             var projectionMatrix = Matrix.CreateOrthographicOffCenter(0, Context.GraphicsDevice.Viewport.Width, Context.GraphicsDevice.Viewport.Height, 0, 0f, -1f);
-            mapRenderer.Draw(map, ref viewMatrix, ref projectionMatrix);
             InnerDraw(gameTime, spriteBatch);
+            mapRenderer.Draw(map, ref viewMatrix, ref projectionMatrix);
         }
 
         protected abstract void InnerDraw(GameTime gameTime, SpriteBatch spriteBatch);
@@ -77,7 +77,7 @@ namespace Gymnaieprojekt
         public new void ManageDraw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Context.GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(transformMatrix: Context.Camera.GetViewMatrix());
+            spriteBatch.Begin(transformMatrix: Context.Camera.GetViewMatrix(), sortMode: SpriteSortMode.Immediate);
 
             Draw(gameTime, spriteBatch);
 
