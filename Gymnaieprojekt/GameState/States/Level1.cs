@@ -2,7 +2,6 @@
 using Gymnaieprojekt.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 
 namespace Gymnaieprojekt.GameState.States
 {

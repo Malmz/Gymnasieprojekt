@@ -170,7 +170,7 @@ namespace Gymnaieprojekt.Players
         public void CenterCameraOnPlayer(Camera2D camera, GraphicsDevice graphicsDevice)
         {
             camera.Position = new Vector2(
-                (float)HelperFunctions.Clamp(sprite.X - sprite.Width / 2f - graphicsDevice.Viewport.Width / 2f, 0, double.MaxValue),
+                MathHelper.Clamp(sprite.X - sprite.Width / 2f - graphicsDevice.Viewport.Width / 2f, 0f, (float)double.MaxValue),
                 camera.Position.Y);
         }
     }
