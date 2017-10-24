@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Configuration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -42,6 +43,16 @@ namespace Gymnaieprojekt
         public static bool IsKeyPressed(Keys key)
         {
             return keyState.IsKeyDown(key) && priorKeyState.IsKeyUp(key);
+        }
+
+        public static bool IsKeyUp(Keys key)
+        {
+            return keyState.IsKeyUp(key);
+        }
+
+        public static bool WasKeyReleased(Keys key)
+        {
+            return keyState.IsKeyUp(key) && priorKeyState.IsKeyDown(key);
         }
 
         public static bool IsKeyDown(Keys key)

@@ -1,28 +1,33 @@
-﻿using System.Collections.Generic;
-using Gymnaieprojekt.Collision;
+﻿using Gymnaieprojekt.Players;
+using Gymnaieprojekt.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.Graphics;
-using MonoGame.Extended.Tiled;
 
 namespace Gymnaieprojekt.GameState.States
 {
     public class Level1 : Level
     {
+        private Player player;
         public Level1(Context context) : base(context, "Levels/Level1")
         {
+            var playerAnimation = new AnimatedSprite(
+                new Vector2(100, 100),
+                new Vector2(100, 100));
+            playerAnimation.AddAnimation(new Animation(Content.Load<Texture2D>("ship1TextureSheet"), GraphicsDevice, 3, 1, 10, true), "default");
+            playerAnimation.ChangeAnimation("default");
+            player = new Player(playerAnimation);
 
+            AddCollisionObject(player);
         }
 
         protected override void InnerDraw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            throw new System.NotImplementedException();
+            player.Draw(spriteBatch);
         }
 
         protected override void InnerUpdate(GameTime gameTime, GameStateManager stateManager)
         {
-            throw new System.NotImplementedException();
+            player.Update(gameTime);
         }
     }
 }

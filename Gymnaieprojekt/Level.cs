@@ -92,5 +92,10 @@ namespace Gymnaieprojekt
         }
 
         protected abstract void InnerUpdate(GameTime gameTime, GameStateManager stateManager);
+
+        protected void AddCollisionObject(ICollisionObject obj)
+        {
+            collisionController.AddObject(obj);
+        }
     }
 }
